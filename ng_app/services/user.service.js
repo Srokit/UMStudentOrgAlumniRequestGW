@@ -28,6 +28,9 @@ app.factory('userService', function () {
     setToken: function (tokenIn) {
       token = tokenIn;
     },
+    getToken: function () {
+      return token;
+    },
     emailIsUmich: function (email) {
       return (email.indexOf('@umich.edu') != -1);
     }

@@ -16,6 +16,19 @@ router.use(function (req, res, next) {
     }
     else {
       if(decoded.type === 'so') {
+
+        if(req.path == "/user" && req.method == "POST") {
+          // This is the only case where student org does not have to be verified yet
+          next();
+        }
+        else {
+          if(decoded.approved) {
+            next();
+          }
+          else {
+            res.json({success: false, msg: "Do not have access"});
+          }
+        }
         // Checks out
         next();
       }
@@ -27,6 +40,6 @@ router.use(function (req, res, next) {
   });
 });
 
-router.use('/orgname', require('./orgname'));
+router.use('/new', require('./new'));
 
 module.exports = router;

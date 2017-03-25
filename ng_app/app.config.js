@@ -5,4 +5,10 @@ app.config(function ($stateProvider) {
     url: '',
     template: '<home></home>'
   });
+
+  $stateProvider.state({
+    name: 'newstudentorg',
+    url: '/newstudentorg',
+    template: '<newstudentorg></newstudentorg>'
+  });
 });

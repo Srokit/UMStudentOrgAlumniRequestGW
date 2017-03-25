@@ -47,14 +47,14 @@ router.post('/', function (req, res) {
       });
     }
     else {
-      StudentOrg.findOne({googId: googId}, function (err, studentOrg) {
+      StudentOrg.findOne({repGoogId: googId}, function (err, studentOrg) {
         if(studentOrg) {
-          var token = jwt.sign({googId: googId, type: 'so'});
+          var token = jwt.sign({googId: googId, type: 'so', approved: studentOrg.approved}, config.jwtSecret);
           res.json({success: true, new: false, type: 'so', token: token});
         }
         else {
           // Don't insert studentOrg into DB yet because we must get the org name from them on another request
-          var token = jwt.sign({googId: googId, type: 'so'}, config.jwtSecret);
+          var token = jwt.sign({googId: googId, type: 'so', approved: studentOrg.approved}, config.jwtSecret);
           res.json({success: true, new: true, type: 'so', token: token});
         }
       });

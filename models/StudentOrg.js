@@ -5,7 +5,9 @@ var studentOrgSchema = new mongo.Schema({
   repGoogId: String,
   repName: String,
   repEmail: String,
-  orgName: String
+  orgName: String,
+  planOfUse: String,
+  approved: Boolean
 });
 
 module.exports = mongo.model('studentOrg', studentOrgSchema);

@@ -1,7 +1,7 @@
 app.component('navbar', {
   templateUrl: './comps/navbar/navbar.view.html',
   
-  controller: function ($scope, $http, userService) {
+  controller: function ($scope, $http, $location, userService) {
 
     $scope.signedIn = false;
     $scope.user = {};
@@ -36,6 +36,7 @@ app.component('navbar', {
                 // Move forward as student organization rep
                 if(data.new) {
                   // Must now redirect to new student org form route
+                  $location.path('/newstudentorg');
                 }
                 else {
                   // Redirect to student org console
