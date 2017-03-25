@@ -16,8 +16,10 @@ var server = http.Server(app);
 
 var sioApp = sio(server);
 
-// Setup routes
-app.use(routes);
+app.get('/', function (req, res) {
+
+  res.send('Hello world!');
+});
 
 // Start looking for http requests
 app.listen(config.port);
