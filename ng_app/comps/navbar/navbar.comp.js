@@ -17,7 +17,6 @@ app.component('navbar', {
         userService.setSignedIn(true);
 
         $scope.user = userService.getInfo();
-        $scope.signedIn = true;
       });
     };
 
