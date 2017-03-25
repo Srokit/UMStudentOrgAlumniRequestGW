@@ -19,18 +19,18 @@ router.use(function (req, res, next) {
 
         if(req.path == "/user" && req.method == "POST" && decoded.status !== 'rejected') {
           // This is the only case where student org does not have to be verified yet
+          req.googId = decoded.googId;
           next();
         }
         else {
           if(decoded.status == 'approved') {
+            req.googId = decoded.googId;
             next();
           }
           else {
             res.json({success: false, msg: "Do not have access"});
           }
         }
-        // Checks out
-        next();
       }
       else {
         // This is an alumni center user
@@ -41,5 +41,6 @@ router.use(function (req, res, next) {
 });
 
 router.use('/new', require('./new'));
+router.use('/alumnirequests', require('./alumnirequests'));
 
 module.exports = router;

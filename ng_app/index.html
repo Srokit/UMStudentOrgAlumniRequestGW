@@ -31,10 +31,22 @@
     <script src="./comps/home/home.comp.js"></script>
     <script src="./comps/navbar/navbar.comp.js"></script>
     <script src="./comps/newstudentorg/newstudentorg.comp.js"></script>
-    <script src="./comps/acuserconsole/acuserconsole.comp.js"></script>
+    <script src="comps/acuserconsole_sos/acuserconsole_sos.comp.js"></script>
+    <script src="./comps/acuserconsole_reqs/acuserconsole_reqs.comp.js"></script>
+    <script src="./comps/studentorgconsole/studentorgconsole.comp.js"></script>
+    <script src="./comps/submitrequest/submitrequest.comp.js"></script>
 
 </head>
 <body ng-app="app">
-        <ui-view></ui-view>
+    <div class="mdl-layout__container">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <div class="mdl-layout__header md-layout__header--waterfall">
+                <navbar></navbar>
+            </div>
+            <div class="mdl-layout__content">
+                <ui-view></ui-view>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

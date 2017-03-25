@@ -40,17 +40,18 @@ app.component('navbar', {
                 }
                 else {
                   // Redirect to student org console
+                  $location.path('/studentorgconsole');
                 }
               }
               else { // data.type == 'ac'
                 // Move forward as alumni center employee
                 if(data.new) {
                   // Redirect to alumni center console (greet with welcome message tho)
-                  $location.path('/acuserconsole');
+                  $location.path('/acuserconsole_reqs');
                 }
                 else {
                   // Redirect to alumni center console ( greet with welcome back message instead)
-                  $location.path('/acuserconsole');
+                  $location.path('/acuserconsole_reqs');
                 }
               }
             }
@@ -93,8 +94,8 @@ app.component('navbar', {
           userService.setInfo(null, null, null, null);
           userService.setSignedIn(false);
           $scope.signedIn = false;
+          $location.path('');
         });
-        $location.path('/');
       });
     };
   }

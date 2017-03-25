@@ -24,5 +24,6 @@ router.use(function (req, res, next) {
 });
 
 router.use('/studentorgs', require('./studentorgs'));
+router.use('/alumnirequests', require('./alumnirequests'));
 
 module.exports = router;

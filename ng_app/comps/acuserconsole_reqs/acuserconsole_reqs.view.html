@@ -1,0 +1,79 @@
+
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col">
+                    <h3>New Alumni Requests</h3>
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                            <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
+                            <th class="mdl-data-table__cell--non-numeric"></th>
+                            <th class="mdl-data-table__cell--non-numeric"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="req in newRequests">
+                            <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{req.eventDatetime.toStr()}}</td>
+                            <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="handleReq(req)">Handle</button></td>
+                            <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="rejectReq(req)">Reject</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <h3>Pending</h3>
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                            <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
+                            <th class="mdl-data-table__cell--non-numeric"></th>
+                            <th class="mdl-data-table__cell--non-numeric"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="req in newRequests">
+                            <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{req.eventDatetime.toStr()}}</td>
+                            <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="fulfillReq(req)">Fulfill</button></td>
+                            <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="rejectReq(req)">Reject</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <h3>Fulfilled</h3>
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                            <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="req in fulfilledRequests">
+                            <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{req.eventDatetime}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <h3>Rejected</h3>
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                            <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="req in rejectedRequests">
+                            <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{req.eventDatetime}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>

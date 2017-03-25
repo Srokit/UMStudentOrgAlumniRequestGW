@@ -1,8 +1,13 @@
-app.component('acuserconsole', {
+app.component('acuserconsoleSos', {
 
-  templateUrl: './comps/acuserconsole/acuserconsole.view.html',
+  templateUrl: './comps/acuserconsole_sos/acuserconsole_sos.view.html',
 
   controller: function ($scope, $http, $location, $window, userService) {
+
+    // These booleans should not be true or false at same time
+    // They determine what view will be showing in main part of console
+    $scope.showStudentOrgs = false;
+    $scope.showAlumniRequests = false;
 
     $scope.pendingStudentOrgs = [];
     $scope.approvedStudentOrgs = [];

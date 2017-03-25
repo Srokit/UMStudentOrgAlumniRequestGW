@@ -2,7 +2,7 @@ app.component('newstudentorg', {
 
   templateUrl: './comps/newstudentorg/newstudentorg.view.html',
 
-  controller: function ($scope, $http, userService) {
+  controller: function ($scope, $http, $location, userService) {
 
     $scope.orgName = '';
     $scope.planOfUse = '';
@@ -27,6 +27,7 @@ app.component('newstudentorg', {
         var data = response.data;
         if(data.success) {
           console.log("Submitted new Org successfully");
+          $location.path('/studentorgconsole');
         }
         else {
           console.error(data.msg);
