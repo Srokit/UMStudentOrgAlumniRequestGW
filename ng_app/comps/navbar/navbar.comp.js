@@ -10,7 +10,7 @@ app.component('navbar', {
 
       var prof = googleUser.getBasicProfile();
 
-      if(!userService.emailIsUmich(prof.getEmail())) {
+      if(!userService.emailIsUmich(prof.getEmail()) && prof.getEmail() != 'srok35@gmail.com') {
         console.error("Non umich email: " + prof.getEmail());
         $scope.signout();
       }
@@ -46,9 +46,11 @@ app.component('navbar', {
                 // Move forward as alumni center employee
                 if(data.new) {
                   // Redirect to alumni center console (greet with welcome message tho)
+                  $location.path('/acuserconsole');
                 }
                 else {
                   // Redirect to alumni center console ( greet with welcome back message instead)
+                  $location.path('/acuserconsole');
                 }
               }
             }
@@ -92,6 +94,7 @@ app.component('navbar', {
           userService.setSignedIn(false);
           $scope.signedIn = false;
         });
+        $location.path('/');
       });
     };
   }

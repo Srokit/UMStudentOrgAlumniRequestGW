@@ -15,7 +15,7 @@ router.post('/', function (req, res) {
     repName: repInfo.name,
     orgName: name,
     planOfUse: planOfUse,
-    approved: false
+    status: 'pending'
   }, function (err) {
     if(err) {
       res.json({success: false, msg: err.message});

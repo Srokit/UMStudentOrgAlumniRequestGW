@@ -7,7 +7,7 @@ var studentOrgSchema = new mongo.Schema({
   repEmail: String,
   orgName: String,
   planOfUse: String,
-  approved: Boolean
+  status: String // approved, rejected, or pending
 });
 
 module.exports = mongo.model('studentOrg', studentOrgSchema);

@@ -7,4 +7,4 @@ var acEmailSchema = new mongo.Schema({
 
 });
 
-module.exports = mongo.model('acEmail', acEmailSchema);
+module.exports = mongo.model('acemail', acEmailSchema);

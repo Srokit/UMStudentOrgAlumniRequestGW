@@ -17,12 +17,12 @@ router.use(function (req, res, next) {
     else {
       if(decoded.type === 'so') {
 
-        if(req.path == "/user" && req.method == "POST") {
+        if(req.path == "/user" && req.method == "POST" && decoded.status !== 'rejected') {
           // This is the only case where student org does not have to be verified yet
           next();
         }
         else {
-          if(decoded.approved) {
+          if(decoded.status == 'approved') {
             next();
           }
           else {
