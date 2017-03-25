@@ -4,6 +4,7 @@
   "description": "A web application that allows umich student organizations to request umich alumni to come to their events.",
   "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Srokit/UMStudentOrgAlumniRequestGW/issues"
   },
-  "homepage": "https://github.com/Srokit/UMStudentOrgAlumniRequestGW#readme"
+  "homepage": "https://github.com/Srokit/UMStudentOrgAlumniRequestGW#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "http": "0.0.0",
+    "socket.io": "^1.7.3"
+  }
 }
