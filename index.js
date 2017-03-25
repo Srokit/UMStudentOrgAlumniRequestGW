@@ -8,7 +8,6 @@ var http = require('http');
 
 // My requires
 var config = require('./config');
-var routes = require('./routes');
 
 // Setup servers and listeners
 var app = express();
