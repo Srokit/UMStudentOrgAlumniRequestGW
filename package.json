@@ -1,0 +1,19 @@
+{
+  "name": "um-student-org-alumni-request-gw",
+  "version": "1.0.0",
+  "description": "A web application that allows umich student organizations to request umich alumni to come to their events.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Srokit/UMStudentOrgAlumniRequestGW.git"
+  },
+  "author": "Stanley Rokita",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Srokit/UMStudentOrgAlumniRequestGW/issues"
+  },
+  "homepage": "https://github.com/Srokit/UMStudentOrgAlumniRequestGW#readme"
+}
