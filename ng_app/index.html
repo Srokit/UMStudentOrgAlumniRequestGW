@@ -2,17 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <meta name="google-signin-client_id" content="288046323667-f1ehoqdo84dqopeme4u1tp0pa4rv2tnp.apps.googleusercontent.com.apps.googleusercontent.com">
+
     <title>UM Student Org Alumni Request GW</title>
 
+    <!-- Custom style -->
+    <link rel="stylesheet" href="./app.css">
+
     <!-- Third party CDNs -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-yellow.min.css">
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
     <!-- My Angular scripts -->
     <script src="./app.module.js"></script>
+    <script src="./app.config.js"></script>
+    <script src="./app.run.js"></script>
+    <script src="./services/user.service.js"></script>
+    <script src="./comps/home/home.comp.js"></script>
+    <script src="./comps/login/login.comp.js"></script>
+    <script src="./comps/navbar/navbar.comp.js"></script>
+
 </head>
 <body ng-app="app">
-    <div ng-controller="mainController">
-        {{ test }}
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <div class="mdl-layout__header md-layout__header--waterfall">
+            <navbar></navbar>
+        </div>
+        <div class="mdl-layout__content">
+            <ui-view></ui-view>
+        </div>
     </div>
+
 </body>
 </html>
