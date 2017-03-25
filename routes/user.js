@@ -6,6 +6,7 @@ var StudentOrg = require('../models/StudentOrg');
 var AcUser = require('../models/AcUser');
 var AcEmail = require('../models/AcEmail');
 var config = require('../config');
+var emailer = require('../email');
 
 // App posts to this end if this is a new or existing user
 // Response should be json with {new: true} or {new: false}
@@ -43,6 +44,8 @@ router.post('/', function (req, res) {
               else {
                 var token = jwt.sign({googId: googId, type: 'ac'}, config.jwtSecret);
                 res.json({success: true, new: true, type: 'ac', token: token});
+
+                emailer.sendWelcome(user.email, user.name);
               }
             });
           }
@@ -58,6 +61,8 @@ router.post('/', function (req, res) {
           // Don't insert studentOrg into DB yet because we must get the org name from them on another request
           var token = jwt.sign({googId: googId, type: 'so', status: 'pending'}, config.jwtSecret);
           res.json({success: true, new: true, type: 'so', token: token});
+
+          emailer.sendWelcome(user.email, user.name);
         }
       });
     }
