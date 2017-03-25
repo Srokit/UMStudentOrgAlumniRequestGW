@@ -15,10 +15,7 @@ var server = http.Server(app);
 
 var sioApp = sio(server);
 
-app.get('/', function (req, res) {
-
-  res.send('Hello world!');
-});
+app.use(express.static('./ng_app'));
 
 // Start looking for http requests
 app.listen(config.port);
