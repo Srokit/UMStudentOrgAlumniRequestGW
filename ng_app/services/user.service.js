@@ -1,5 +1,6 @@
 app.factory('userService', function () {
 
+  var token = null;
   var signedIn = false;
   var user= {
     id: '',
@@ -23,6 +24,12 @@ app.factory('userService', function () {
     },
     getSignedIn: function () {
       return signedIn;
+    },
+    setToken: function (tokenIn) {
+      token = tokenIn;
+    },
+    emailIsUmich: function (email) {
+      return (email.indexOf('@umich.edu') != -1);
     }
   };
 });

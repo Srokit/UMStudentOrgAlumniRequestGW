@@ -10,6 +10,53 @@ app.component('navbar', {
 
       var prof = googleUser.getBasicProfile();
 
+      if(!userService.emailIsUmich(prof.getEmail())) {
+        console.error("Non umich email: " + prof.getEmail());
+        $scope.signout();
+      }
+
+      $scope.$apply(function () {
+        $http.post('/user',
+          {user: {
+            googId: prof.getId(),
+            email: prof.getEmail(),
+            name: prof.getName()
+          }
+          }).then(function (response) {
+            var data = response.data;
+            if(data.success) {
+              userService.setToken(data.token);
+              userService.setInfo(prof.getId(), prof.getEmail(), prof.getName(), prof.Paa);
+              userService.setSignedIn(true);
+              $scope.user = userService.getInfo();
+              $scope.signedIn = true;
+              console.log("Got data from response");
+              console.log(data);
+              if(data.type == 'so') {
+                // Move forward as student organization rep
+                if(data.new) {
+                  // Must now redirect to new student org form route
+                }
+                else {
+                  // Redirect to student org console
+                }
+              }
+              else { // data.type == 'ac'
+                // Move forward as alumni center employee
+                if(data.new) {
+                  // Redirect to alumni center console (greet with welcome message tho)
+                }
+                else {
+                  // Redirect to alumni center console ( greet with welcome back message instead)
+                }
+              }
+            }
+            else {
+              console.error(data.msg);
+            }
+        });
+      });
+
       $scope.$apply(function () {
         var profPicUrl = prof.Paa;
 
@@ -40,6 +87,8 @@ app.component('navbar', {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function() {
         $scope.$apply(function () {
+          userService.setInfo(null, null, null, null);
+          userService.setSignedIn(false);
           $scope.signedIn = false;
         });
       });

@@ -54,7 +54,7 @@ router.post('/', function (req, res) {
         }
         else {
           // Don't insert studentOrg into DB yet because we must get the org name from them on another request
-          var token = jwt.sign({googId: googId, type: 'so'});
+          var token = jwt.sign({googId: googId, type: 'so'}, config.jwtSecret);
           res.json({success: true, new: true, type: 'so', token: token});
         }
       });
