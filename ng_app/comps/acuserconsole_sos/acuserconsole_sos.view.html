@@ -16,7 +16,7 @@
                 <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
                 <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="approveSO(so)">Approve</button></td>
-                <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="rejectSO(so)">Reject</button></td>
+                <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button" ui-sref="rejectstudentorg({studentOrgId: so._id})">Reject</a></td>
             </tr>
             </tbody>
         </table>

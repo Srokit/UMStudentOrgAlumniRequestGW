@@ -36,6 +36,9 @@ app.component('navbar', {
               $scope.signedIn = true;
               console.log("Got data from response");
               console.log(data);
+
+              userService.setUserType(data.type);
+
               if(data.type == 'so') {
                 // Move forward as student organization rep
                 if(data.new) {

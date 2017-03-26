@@ -1,5 +1,7 @@
 <div class="mdl-layout__header-row header">
-    <span class="mdl-layout-title logo">UMStudentOrgAlumniRequestGW</span>
+    <span class="mdl-layout-title logo"><a href="/#/"><img src="../../assets/images/umar_logo.png" height="100%"></a></span>
+    <div class="mdl-layout-spacer"></div>
+    <span class="mdl-layout-title">"Connecting Umich Organizations to Alumni"</span>
     <div class="mdl-layout-spacer"></div>
     <nav class="mdl-navigation">
         <a ng-repeat="navlinkName in navlinkNames" class="mdl-navigation__link" href="{{ navlinkUrls[$index] }}">
@@ -17,6 +19,7 @@
             for="demo-menu-lower-right">
             <li class="mdl-menu__item">Signed in as: {{ user.name }}</li>
             <li ng-click="signout()" class="mdl-menu__item">Sign Out</li>
+            <li ng-if="" ng-click="signout()" class="mdl-menu__item"><a></a></li>
         </ul>
     <div ng-if="!signedIn">
         <div ng-init="renderSigninButton()">

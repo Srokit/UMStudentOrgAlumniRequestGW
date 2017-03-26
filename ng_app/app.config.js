@@ -47,4 +47,10 @@ app.config(function ($stateProvider) {
     url: '/rejectrequest/:requestId',
     template: '<rejectrequest></rejectrequest>'
   });
+
+  $stateProvider.state({
+    name: 'rejectstudentorg',
+    url: '/rejectstudentorg/:studentOrgId',
+    template: '<rejectstudentorg></rejectstudentorg>'
+  });
 });

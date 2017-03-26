@@ -62,13 +62,15 @@ router.get('/:studentOrgId/approve', function (req, res) {
 router.get('/:studentOrgId/reject', function (req, res) {
 
   var _id = req.params.studentOrgId;
+  var reason = req.query.get('reason');
   StudentOrg.findById(_id, function (err, studentOrg) {
     if(studentOrg) {
       studentOrg.status = 'rejected';
+      studentOrg.reasonForRejection = reason;
       studentOrg.save(function (err) {
         if(!err) {
 
-          emailer.sendStudentOrgRejected(studentOrg, {name: "So and so"}, "You suck again!");
+          emailer.sendStudentOrgRejected(studentOrg, reason);
           res.json({success: true});
         }
       });

@@ -165,7 +165,7 @@ module.exports.sendStudentOrgApproved = function (toStudentOrg, acUser) {
 
 };
 
-module.exports.sendStudentOrgRejected = function (toStudentOrg, acUser, reason) {
+module.exports.sendStudentOrgRejected = function (toStudentOrg, reason) {
 
   var bodyText = "Hello"+toStudentOrg.repName+",\nUnfortunately, your organization "+toStudentOrg.orgName+
     " has been denied access to the Alumni Request Gateway because "+reason+"."+signOff;

@@ -2,6 +2,7 @@ app.factory('userService', function () {
 
   var token = null;
   var signedIn = false;
+  var userType = ''; // 'so' or 'ac'
   var user= {
     id: '',
     email: '',
@@ -27,6 +28,12 @@ app.factory('userService', function () {
     },
     setToken: function (tokenIn) {
       token = tokenIn;
+    },
+    setUserType: function (userTypeIn) {
+      userType = userTypeIn;
+    },
+    getUserType: function () {
+      return userType;
     },
     getToken: function () {
       return token;
