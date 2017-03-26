@@ -5,6 +5,8 @@ var router = require('express').Router();
 
 var config = require('../../config');
 
+var StudentOrg = require('../../models/StudentOrg');
+
 // Use json web tokens as authentication for student org routes
 router.use(function (req, res, next) {
 
@@ -46,6 +48,14 @@ router.use(function (req, res, next) {
         res.json({success: false, msg: "Do not have access"});
       }
     }
+  });
+});
+
+router.get('/me', function (req, res) {
+
+  var googId = req.googId;
+  StudentOrg.findOne({repGoogId: googId}, function (err, studentOrg) {
+    res.json({success: true, studentOrg: studentOrg});
   });
 });
 

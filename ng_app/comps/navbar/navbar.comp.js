@@ -1,10 +1,11 @@
 app.component('navbar', {
   templateUrl: './comps/navbar/navbar.view.html',
   
-  controller: function ($scope, $http, $location, userService, navlinksService) {
+  controller: function ($scope, $http, $location, userService, navlinksService, notificationService) {
 
     $scope.signedIn = false;
     $scope.user = {};
+    $scope.userType = '';
 
     // These will be changed by navlinks service
     $scope.navlinkNames = [];
@@ -16,6 +17,7 @@ app.component('navbar', {
 
       if(!userService.emailIsUmich(prof.getEmail()) && prof.getEmail() != 'srok35@gmail.com') {
         console.error("Non umich email: " + prof.getEmail());
+        notificationService.setNotif("Invalid Umich Email Address!");
         $scope.signout();
       }
 
@@ -38,15 +40,18 @@ app.component('navbar', {
               console.log(data);
 
               userService.setUserType(data.type);
+              $scope.userType = data.type;
 
               if(data.type == 'so') {
                 // Move forward as student organization rep
                 if(data.new) {
                   // Must now redirect to new student org form route
+                  notificationService.setNotif("Welcome potential new student organization representative!");
                   $location.path('/newstudentorg');
                 }
                 else {
                   // Redirect to student org console
+                  notificationService.setNotif("Welcome back "+prof.getName()+"!");
                   $location.path('/studentorgconsole');
                 }
               }
@@ -54,10 +59,12 @@ app.component('navbar', {
                 // Move forward as alumni center employee
                 if(data.new) {
                   // Redirect to alumni center console (greet with welcome message tho)
+                  notificationService.setNotif("Welcome new Alumni Center User "+prof.getName()+"!");
                   $location.path('/acuserconsole_reqs');
                 }
                 else {
                   // Redirect to alumni center console ( greet with welcome back message instead)
+                  notificationService.setNotif("Welcome back "+prof.getName()+"!");
                   $location.path('/acuserconsole_reqs');
                 }
               }
@@ -103,6 +110,7 @@ app.component('navbar', {
           $scope.signedIn = false;
           $location.path('');
           navlinksService.setNavlinks([], []);
+          notificationService.setNotif("Signed out of account!");
         });
       });
     };

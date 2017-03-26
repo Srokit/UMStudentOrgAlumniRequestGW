@@ -2,7 +2,7 @@ app.component('submitrequest', {
 
   templateUrl: './comps/submitrequest/submitrequest.view.html',
 
-  controller: function ($scope, $http, $location, userService) {
+  controller: function ($scope, $http, $location, userService, navlinksService, notificationService) {
 
     $scope.request = {
 
@@ -29,6 +29,7 @@ app.component('submitrequest', {
 
         if(data.success) {
           console.log("Submitted new request successfully");
+          notificationService.setNotif("Submitted Alumni Requests Successfully");
           $location.path('/studentorgconsole');
         }
         else {
@@ -36,5 +37,11 @@ app.component('submitrequest', {
         }
       });
     };
+
+    $scope.start = function () {
+      navlinksService.setNavlinks(['Back'], ['/#/studentorgconsole']);
+    };
+
+    $scope.start();
   }
 })

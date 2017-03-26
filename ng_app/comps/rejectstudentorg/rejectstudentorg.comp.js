@@ -2,26 +2,11 @@ app.component('rejectstudentorg', {
 
   templateUrl: './comps/rejectstudentorg/rejectstudentorg.view.html',
 
-  controller: function ($scope, $location, $stateParams, $http, userService, navlinksService) {
+  controller: function ($scope, $location, $stateParams, $http, userService, navlinksService, notificationService) {
 
     $scope.orgName = '';
     $scope.reason = '';
     $scope.studentOrg = null;
-
-    $scope.reject = function () {
-
-      $http.get('/acuser/studentorgs/'+$scope.studentOrg._id+'/reject?reason='+$scope.reason, {
-        headers: {
-          'user-token': userService.getToken()
-        }
-      }).then(function (response) {
-        var data = response.data;
-        if(data.success) {
-          console.log("Rejected student org successfully");
-          $location.path('/acuserconsole_sos');
-        }
-      });
-    };
 
     $scope.reload = function () {
 

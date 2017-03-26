@@ -7,6 +7,8 @@ app.component('studentorgconsole', {
     // If set then display a message that this student org account has not been approved
     $scope.waitingForApproval = false;
 
+    $scope.orgName = '';
+
     $scope.pendingRequests = [];
     $scope.fulfilledRequests = [];
     $scope.rejectedRequests = [];
@@ -41,6 +43,17 @@ app.component('studentorgconsole', {
             console.error(data.msg);
           }
 
+        }
+      });
+
+      $http.get('/studentorg/me', {
+        headers: {
+          'user-token': userService.getToken()
+        }
+      }).then(function (response) {
+        var data = response.data;
+        if(data.success) {
+          $scope.orgName = data.studentOrg.orgName;
         }
       });
     };

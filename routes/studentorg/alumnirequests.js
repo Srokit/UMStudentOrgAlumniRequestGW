@@ -50,4 +50,12 @@ router.post('/new', function (req, res) {
   });
 });
 
+router.get('/:requestId', function (req, res) {
+
+  var _id = req.params.requestId;
+  AlumniRequest.findById(_id, function (err, request) {
+    res.json({success: true, request: request});
+  });
+});
+
 module.exports = router;

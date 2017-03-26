@@ -53,4 +53,10 @@ app.config(function ($stateProvider) {
     url: '/rejectstudentorg/:studentOrgId',
     template: '<rejectstudentorg></rejectstudentorg>'
   });
+
+  $stateProvider.state({
+    name: 'requestdetails',
+    url: '/requestdetails/:requestId',
+    template: '<requestdetails></requestdetails>'
+  });
 });

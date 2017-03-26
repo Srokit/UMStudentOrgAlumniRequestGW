@@ -2,7 +2,7 @@ app.component('acuserconsoleReqs', {
 
   templateUrl: './comps/acuserconsole_reqs/acuserconsole_reqs.view.html',
 
-  controller: function ($scope, $http, userService, navlinksService, dateformatService) {
+  controller: function ($scope, $http, userService, navlinksService, dateformatService, notificationService) {
 
     $scope.pendingRequests = [];
     $scope.fulfilledRequests = [];
@@ -22,6 +22,7 @@ app.component('acuserconsoleReqs', {
         var data = response.data;
         if(data.success) {
           console.log("Successfully handledRequest");
+          notificationService.setNotif("Successfully handled successfully");
           $scope.reload();
         }
         else {
@@ -39,6 +40,7 @@ app.component('acuserconsoleReqs', {
         var data = response.data;
         if(data.success) {
           console.log("Successfully fulfilled Request");
+          notificationService.setNotif("Fulfilled request successfully");
           $scope.reload();
         }
         else {
@@ -56,6 +58,7 @@ app.component('acuserconsoleReqs', {
         var data = response.data;
         if(data.success) {
           console.log("Successfully rejected Request");
+          notificationService.setNotif("Rejected request successfully");
           $scope.start();
         }
         else {

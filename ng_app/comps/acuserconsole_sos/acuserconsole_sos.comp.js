@@ -2,7 +2,7 @@ app.component('acuserconsoleSos', {
 
   templateUrl: './comps/acuserconsole_sos/acuserconsole_sos.view.html',
 
-  controller: function ($scope, $http, $location, $window, userService, navlinksService, dateformatService) {
+  controller: function ($scope, $http, $location, $window, userService, navlinksService, dateformatService, notificationService) {
 
     // These booleans should not be true or false at same time
     // They determine what view will be showing in main part of console
@@ -29,26 +29,7 @@ app.component('acuserconsoleSos', {
           // Reload
           $scope.reload();
           console.log("Accepted response successfully");
-        }
-        else {
-          console.error(data.msg);
-        }
-      });
-    };
-
-    $scope.rejectSO = function (studentOrgIn) {
-      var _id = studentOrgIn._id;
-
-      $http.get('/acuser/studentorgs/'+_id+'/reject', {
-        headers: {
-          'user-token': userService.getToken()
-        }
-      }).then(function (response) {
-        var data = response.data;
-        if(data.success) {
-          // Reload
-          $scope.reload();
-          console.log("Rejected response successfully");
+          notificationService.setNotif("Approved Student Org Account successfully");
         }
         else {
           console.error(data.msg);

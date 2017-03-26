@@ -4,10 +4,15 @@
     <span class="mdl-layout-title">"Connecting Umich Organizations to Alumni"</span>
     <div class="mdl-layout-spacer"></div>
     <nav class="mdl-navigation">
-        <a ng-repeat="navlinkName in navlinkNames" class="mdl-navigation__link" href="{{ navlinkUrls[$index] }}">
+        <a ng-repeat="navlinkName in navlinkNames" class="mdl-navigation__link mdl-color--yellow mdl-color-text--black" href="{{ navlinkUrls[$index] }}">
             <h4>{{ navlinkName }}</h4>
         </a>
     </nav>
+    <div class="mdl-layout-spacer"></div>
+    <span ng-if="signedIn" class="mdl-chip">
+        <span ng-if="userType == 'so'" class="mdl-chip__text">Student Organization Rep</span>
+        <span ng-if="userType == 'ac'" class="mdl-chip__text">Alumni Center Staff</span>
+    </span>
     <div class="mdl-layout-spacer"></div>
         <!-- Right aligned menu below button -->
         <button ng-hide="!signedIn" id="demo-menu-lower-right"

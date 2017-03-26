@@ -2,7 +2,7 @@ app.component('rejectrequest', {
 
   templateUrl: './comps/rejectrequest/rejectrequest.view.html',
 
-  controller: function ($scope, $http, $location, $stateParams, userService, navlinksService) {
+  controller: function ($scope, $http, $location, $stateParams, userService, navlinksService, notificationService) {
 
     $scope.orgName = '';
     $scope.request = null;
@@ -18,6 +18,7 @@ app.component('rejectrequest', {
         var data = response.data;
         if(data.success) {
           console.log("Rejected request successfully");
+          notificationService.setNotif("Rejected request successfully");
           $location.path('/acuserconsole_reqs');
         }
       });

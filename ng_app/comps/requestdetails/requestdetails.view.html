@@ -1,0 +1,39 @@
+<div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <div class="mdl-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Request for {{ request.eventName }}</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <ul class="mdl-list">
+                    <li class="mdl-list__item">
+                        <label>Event name:<br>
+                        <strong>{{ request.eventName }}</strong>
+                        </label>
+                    </li>
+                    <li class="mdl-list__item">
+                        <label>Event data and time:<br>
+                        <strong>{{ format( request.eventDatetime ) }}</strong>
+                            </label>
+                    </li>
+                    <li class="mdl-list__item">
+                        <label>Subject for alumni:<br>
+                        <strong>{{ request.subject }}</strong>
+                            </label>
+                    </li>
+                    <li ng-if="request.alumniName" class="mdl-list__item">
+                        <label>Alumni requested:<br>
+                        <strong>{{ request.alumniName }}</strong></label>
+                    </li>
+                    <li class="mdl-list__item">
+                        <label>Status:<br>
+                        <strong>{{ request.status }}</strong>
+                            </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>

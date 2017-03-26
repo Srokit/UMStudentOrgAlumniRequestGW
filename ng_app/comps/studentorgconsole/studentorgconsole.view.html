@@ -1,75 +1,88 @@
 
 <div ng-if="!waitingForApproval" class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--12-col mdl-color-text--indigo">
+        <h2>{{ orgName }}</h2>
+    </div>
+    <hr>
+    <div class="mdl-layout-spacer"></div>
     <div class="mdl-cell mdl-cell--6-col">
         <h3>New Alumni Requests</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Event Name</th>
-                <th class="mdl-data-table__cell--non-numeric">Date and Time</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Event Name</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Date and Time</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in newRequests">
-                <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{ format( req.eventDatetime )}}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{req.eventName}}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{ format( req.eventDatetime )}}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{req.eventName}}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{ format( req.eventDatetime )}}</td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="mdl-cell mdl-cell--3-col">
+    <div class="mdl-cell mdl-cell--6-col">
         <h3>Pending</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Event Name</th>
-                <th class="mdl-data-table__cell--non-numeric">Date and Time</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Event Name</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Date and Time</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in pendingRequests">
-                <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{ format(req.eventDatetime) }}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{req.eventName}}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{ format( req.eventDatetime )}}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{req.eventName}}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{ format( req.eventDatetime )}}</td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="mdl-cell mdl-cell--3-col">
+    <div class="mdl-cell mdl-cell--6-col">
         <h3>Fulfilled</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Event Name</th>
-                <th class="mdl-data-table__cell--non-numeric">Date and Time</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Event Name</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Date and Time</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in fulfilledRequests">
-                <td class="mdl-data-table__cell--non-numeric">{{ req.eventName }}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{ format(req.eventDatetime) }}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{req.eventName}}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{ format( req.eventDatetime )}}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0"><a class="mdl-button" ui-sref="requestdetails({requestId: req._id})">View</a></td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{req.eventName}}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{ format( req.eventDatetime )}}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1"><a class="mdl-button" ui-sref="requestdetails({requestId: req._id})">View</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="mdl-cell mdl-cell--3-col">
+    <div class="mdl-cell mdl-cell--6-col">
         <h3>Rejected</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Event Name</th>
-                <th class="mdl-data-table__cell--non-numeric">Reason for Rejection</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Event Name</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Reason for Rejection</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in rejectedRequests">
-                <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{req.reasonForRejection}}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{req.eventName}}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{ req.reasonForRejection }}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{req.eventName}}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{ req.reasonForRejection }}</td>
             </tr>
             </tbody>
         </table>
-    </div>
-    <div class="mdl-cell mdl-cell--12-col">
-        <a class="mdl-button" ui-sref="submitrequest">Make new Request</a>
     </div>
 </div>
 <div ng-if="waitingForApproval" class="mdl-grid">

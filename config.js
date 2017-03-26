@@ -16,10 +16,7 @@ else { // process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'developme
   config = {
     port: 3000,
     dbUri: 'mongodb://localhost:27017/umsoargw',
-    jwtSecret: 'thisCantBeGuessed',
-    // TODO: Get rid of this sensitive info
-    mailUsername: 'srok35@gmail.com',
-    mailPassword: '42!Hayoob'
+    jwtSecret: 'thisCantBeGuessed'
   };
 }
 
