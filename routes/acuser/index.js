@@ -14,6 +14,7 @@ router.use(function (req, res, next) {
      }
      else {
        if(decoded.type === 'ac') {
+         req.googId = decoded.googId;
          next();
        }
        else {
@@ -25,5 +26,6 @@ router.use(function (req, res, next) {
 
 router.use('/studentorgs', require('./studentorgs'));
 router.use('/alumnirequests', require('./alumnirequests'));
+router.use('/studentorgsById', require('./studentorgsById'));
 
 module.exports = router;

@@ -2,7 +2,7 @@ app.component('acuserconsoleSos', {
 
   templateUrl: './comps/acuserconsole_sos/acuserconsole_sos.view.html',
 
-  controller: function ($scope, $http, $location, $window, userService, navlinksService) {
+  controller: function ($scope, $http, $location, $window, userService, navlinksService, dateformatService) {
 
     // These booleans should not be true or false at same time
     // They determine what view will be showing in main part of console
@@ -11,6 +11,10 @@ app.component('acuserconsoleSos', {
 
     $scope.pendingStudentOrgs = [];
     $scope.approvedStudentOrgs = [];
+
+    $scope.format = function (req) {
+      return dateformatService.format(req);
+    };
 
     $scope.approveSO = function(studentOrgIn) {
       var _id = studentOrgIn._id;

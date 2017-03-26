@@ -2,7 +2,7 @@ app.component('rejectstudentorg', {
 
   templateUrl: './comps/rejectstudentorg/rejectstudentorg.view.html',
 
-  controller: function ($scope, $location, $http, userService, navlinksService) {
+  controller: function ($scope, $location, $stateParams, $http, userService, navlinksService) {
 
     $scope.orgName = '';
     $scope.reason = '';
@@ -25,14 +25,14 @@ app.component('rejectstudentorg', {
 
     $scope.reload = function () {
 
-      $http.get('/acuser/studentorgs/'+$stateParams.studentOrgId, {
+      $http.get('/acuser/studentorgsById/'+$stateParams.studentOrgId, {
         headers: {
           'user-token': userService.getToken()
         }}).then(function (response) {
         var data = response.data;
         if(data.success) {
-          $scope.studentOrg = data.studentOrg;
-          $scope.orgName = data.studentOrg.orgName;
+            $scope.studentOrg = data.studentOrg;
+            $scope.orgName = data.studentOrg.orgName;
         }
       });
     };

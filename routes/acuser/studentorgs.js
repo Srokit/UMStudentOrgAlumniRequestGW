@@ -2,6 +2,7 @@
 var router = require('express').Router();
 
 var StudentOrg = require('../../models/StudentOrg');
+var AcUser = require('../../models/AcUser');
 
 var emailer = require('../../email');
 
@@ -42,15 +43,19 @@ router.get('/:studentOrgGoogId', function (req, res) {
 router.get('/:studentOrgId/approve', function (req, res) {
 
   var _id = req.params.studentOrgId;
+  var acGoogId = req.googId;
   StudentOrg.findById(_id, function (err, studentOrg) {
     if(studentOrg) {
-      studentOrg.status = 'approved';
-      studentOrg.save(function (err) {
-        if(!err) {
 
-          emailer.sendStudentOrgApproved(studentOrg, {name: "Awseom lady"});
-          res.json({success: true});
-        }
+      AcUser.findOne({googId: acGoogId}, function (err, acUser) {
+        studentOrg.status = 'approved';
+        studentOrg.save(function (err) {
+          if(!err) {
+
+            emailer.sendStudentOrgApproved(studentOrg, acUser);
+            res.json({success: true});
+          }
+        });
       });
     }
     else {

@@ -14,7 +14,7 @@
             <tbody>
             <tr ng-repeat="req in newRequests">
                 <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{req.eventDatetime}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ format(req.eventDatetime) }}</td>
                 <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="handleReq(req)">Handle</button></td>
                 <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button" ui-sref="rejectrequest({requestId: req._id})">Reject</a></td>
             </tr>
@@ -38,7 +38,7 @@
             <tbody>
             <tr ng-repeat="req in pendingRequests">
                 <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{req.eventDatetime}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ format(req.eventDatetime) }}</td>
                 <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="fulfillReq(req)">Fulfill</button></td>
                 <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button" ui-sref="rejectrequest({requestId: req._id})">Reject</a></td>
             </tr>
@@ -61,7 +61,7 @@
             <tbody>
             <tr ng-repeat="req in fulfilledRequests">
                 <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{req.eventDatetime}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ format(req.eventDatetime) }}</td>
             </tr>
             <tr ng-if="fulfilledRequests.length === 0">
                 <td class="mdl-data-table__cell--non-numeric">No Fulfilled Requests</td>

@@ -45,7 +45,7 @@ router.post('/', function (req, res) {
                 var token = jwt.sign({googId: googId, type: 'ac'}, config.jwtSecret);
                 res.json({success: true, new: true, type: 'ac', token: token});
 
-                emailer.sendWelcome(user.email, user.name);
+                emailer.sendAlumniCenterWelcome(user);
               }
             });
           }
@@ -62,7 +62,7 @@ router.post('/', function (req, res) {
           var token = jwt.sign({googId: googId, type: 'so', status: 'pending'}, config.jwtSecret);
           res.json({success: true, new: true, type: 'so', token: token});
 
-          emailer.sendWelcome(user.email, user.name);
+          emailer.sendStudentOrgWelcome(user);
         }
       });
     }

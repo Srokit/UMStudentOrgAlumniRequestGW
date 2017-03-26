@@ -2,12 +2,16 @@ app.component('acuserconsoleReqs', {
 
   templateUrl: './comps/acuserconsole_reqs/acuserconsole_reqs.view.html',
 
-  controller: function ($scope, $http, userService, navlinksService) {
+  controller: function ($scope, $http, userService, navlinksService, dateformatService) {
 
     $scope.pendingRequests = [];
     $scope.fulfilledRequests = [];
     $scope.rejectedRequests = [];
     $scope.newRequests = [];
+
+    $scope.format = function (req) {
+      return dateformatService.format(req);
+    };
 
     $scope.handleReq = function (req) {
       $http.get('/acuser/alumnirequests/'+req._id+'/handle', {

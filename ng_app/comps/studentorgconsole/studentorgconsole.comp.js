@@ -2,7 +2,7 @@ app.component('studentorgconsole', {
 
   templateUrl: './comps/studentorgconsole/studentorgconsole.view.html',
 
-  controller: function ($scope, $http, userService) {
+  controller: function ($scope, $http, userService, dateformatService, navlinksService) {
 
     // If set then display a message that this student org account has not been approved
     $scope.waitingForApproval = false;
@@ -12,7 +12,11 @@ app.component('studentorgconsole', {
     $scope.rejectedRequests = [];
     $scope.newRequests = [];
 
+    $scope.format = dateformatService.format;
+
     $scope.start = function () {
+
+      navlinksService.setNavlinks(['Make New Request'], ['/#/submitrequest']);
 
       $http.get('/studentorg/alumnirequests/all', {
         headers: {

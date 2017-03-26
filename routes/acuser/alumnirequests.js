@@ -42,6 +42,7 @@ router.get('/:alumniRequestId', function (req, res) {
 router.get('/:alumniRequestId/handle', function (req, res) {
 
   var _id = req.params.alumniRequestId;
+  var acGoogId = req.googId;
   AlumniRequest.findById(_id, function (err, req) {
 
     req.status = 'pending';
@@ -50,8 +51,10 @@ router.get('/:alumniRequestId/handle', function (req, res) {
 
         StudentOrg.findOne({repGoogId: req.studentOrgGoogId}, function (err, studentOrg) {
 
-          emailer.sendRequestHandled(studentOrg, req);
-          res.json({success: true});
+          AcUser.findOne({googId: acGoogId}, function (err, acUser) {
+            emailer.sendRequestHandled(studentOrg, req, acUser);
+            res.json({success: true});
+          });
         });
       }
       else {
@@ -73,7 +76,7 @@ router.get('/:alumniRequestId/fulfill', function (req, res) {
       if(!err) {
         StudentOrg.findOne({repGoogId: req.studentOrgGoogId}, function (err, studentOrg) {
 
-          AcUser.findOne({repGoogId: acGoogId}, function (err, acUser) {
+          AcUser.findOne({googId: acGoogId}, function (err, acUser) {
 
             emailer.sendRequestFulfilled(studentOrg, req, acUser);
             res.json({success: true});

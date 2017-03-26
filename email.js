@@ -13,17 +13,42 @@ var transport = nodemailer.createTransport({
   }
 });
 
-module.exports.sendStudenOrgWelcome = function(toStudentOrg) {
-  var bodyText = "We welcome "+toStudentOrg.repName+" and your student organization "+toStudentOrg.orgName+
+module.exports.sendStudentOrgWelcome = function(toStudentOrg) {
+  var bodyText = "We welcome "+toStudentOrg.name+" and your student organization "+toStudentOrg.name+
     " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
     " approve your organization. Until then you will not be able to make requests."+signOff;
-  var bodyHtml = "We welcome "+toStudentOrg.repName+" and your student organization "+toStudentOrg.orgName+
+  var bodyHtml = "We welcome "+toStudentOrg.name+" and your student organization "+toStudentOrg.name+
     " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
     " approve your organization. Until then you will not be able to make requests."+signOff;
 
   transport.sendMail({
     from: emailFrom,
-    to: toStudentOrg.repEmail,
+    to: toStudentOrg.email,
+    subject: "Welcome to the Alumni Request Gateway",
+    text: bodyText,
+    html: bodyHtml
+  }, function (err, info) {
+    if(err) {
+      console.error(err);
+    }
+    else {
+      console.log("Got mail response:");
+      console.log(info);
+    }
+  });
+};
+
+module.exports.sendAlumniCenterWelcome = function(toAcUser) {
+  var bodyText = "We welcome "+toAcUser.name+" and your student organization "+toAcUser.name+
+    " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
+    " approve your organization. Until then you will not be able to make requests."+signOff;
+  var bodyHtml = "We welcome "+toAcUser.name+" and your student organization "+toAcUser.name+
+    " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
+    " approve your organization. Until then you will not be able to make requests."+signOff;
+
+  transport.sendMail({
+    from: emailFrom,
+    to: toAcUser.email,
     subject: "Welcome to the Alumni Request Gateway",
     text: bodyText,
     html: bodyHtml

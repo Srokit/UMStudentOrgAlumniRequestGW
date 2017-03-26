@@ -102,6 +102,7 @@ app.component('navbar', {
           userService.setSignedIn(false);
           $scope.signedIn = false;
           $location.path('');
+          navlinksService.setNavlinks([], []);
         });
       });
     };

@@ -1,11 +1,13 @@
 
 <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col">
+    <div class="mdl-cell mdl-cell--10-col">
         <h3>Pending Orgs</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Plan for app use</th>
+                <th class="mdl-data-table__cell--non-numeric">Rep Email</th>
                 <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
                 <th class="mdl-data-table__cell--non-numeric"></th>
                 <th class="mdl-data-table__cell--non-numeric"></th>
@@ -14,6 +16,8 @@
             <tbody>
             <tr ng-repeat="so in pendingStudentOrgs">
                 <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.planOfUse}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.repEmail}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
                 <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="approveSO(so)">Approve</button></td>
                 <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button" ui-sref="rejectstudentorg({studentOrgId: so._id})">Reject</a></td>
@@ -21,36 +25,46 @@
             </tbody>
         </table>
     </div>
-    <div class="mdl-cell mdl-cell--3-col">
+    <div class="mdl-cell mdl-cell--10-col">
         <h3>Approved Orgs</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Plan for app use</th>
+                <th class="mdl-data-table__cell--non-numeric">Rep Email</th>
                 <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="so in approvedStudentOrgs">
                 <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.planOfUse}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.repEmail}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="mdl-cell mdl-cell--3-col">
+    <div class="mdl-cell mdl-cell--10-col">
         <h3>Rejected Orgs</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Plan for app use</th>
+                <th class="mdl-data-table__cell--non-numeric">Rep Email</th>
                 <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Reason for Rejection</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="so in rejectedStudentOrgs">
                 <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.planOfUse}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.repEmail}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.reasonForRejection}}</td>
             </tr>
             </tbody>
         </table>
