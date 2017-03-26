@@ -2,6 +2,8 @@
 var router = require('express').Router();
 
 var AlumniRequest = require('../../models/AlumniRequest');
+var StudentOrg = require('../../models/StudentOrg');
+var emailer = require('../../email');
 
 router.get('/all', function (req, res) {
 
@@ -36,6 +38,11 @@ router.post('/new', function (req, res) {
   AlumniRequest.create(request, function (err) {
     if(!err) {
       res.json({success: true});
+
+      StudentOrg.findOne({repGoogId: googId}, function (err, studentOrg) {
+
+        emailer.sendRequestReceived(studentOrg, request);
+      });
     }
     else {
       res.json({success: false, msg: err.message});

@@ -13,13 +13,17 @@ var transport = nodemailer.createTransport({
   }
 });
 
-module.exports.sendWelcome = function(toEmail, toName) {
-  var bodyText = "Welcome "+toName;
-  var bodyHtml = "<b>Welcome</b> "+toName;
+module.exports.sendStudenOrgWelcome = function(toStudentOrg) {
+  var bodyText = "We welcome "+toStudentOrg.repName+" and your student organization "+toStudentOrg.orgName+
+    " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
+    " approve your organization. Until then you will not be able to make requests."+signOff;
+  var bodyHtml = "We welcome "+toStudentOrg.repName+" and your student organization "+toStudentOrg.orgName+
+    " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
+    " approve your organization. Until then you will not be able to make requests."+signOff;
 
   transport.sendMail({
     from: emailFrom,
-    to: toEmail,
+    to: toStudentOrg.repEmail,
     subject: "Welcome to the Alumni Request Gateway",
     text: bodyText,
     html: bodyHtml
@@ -84,7 +88,7 @@ module.exports.sendRequestHandled = function (toStudentOrg, request, acUser) {
   });
 };
 
-module.exports.sendRequestRejected = function (toStudentOrg, request, acUser, reason) {
+module.exports.sendRequestRejected = function (toStudentOrg, request, reason) {
 
   var bodyText = "Hello"+toStudentOrg.repName+",\nUnfortunately, the Alumni Center has decided to deny your Alumni Request because"+
     reason+". Our apologies plase feel free to submit requests again in the future."+signOff;

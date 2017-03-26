@@ -16,19 +16,28 @@ router.use(function (req, res, next) {
     }
     else {
       if(decoded.type === 'so') {
-
-        if(req.path == "/user" && req.method == "POST" && decoded.status !== 'rejected') {
+        console.log(req.path);
+        if(req.path == "/new" && req.method == "POST" && decoded.status !== 'rejected') {
           // This is the only case where student org does not have to be verified yet
           req.googId = decoded.googId;
+          console.log(req.googId);
           next();
         }
         else {
-          if(decoded.status == 'approved') {
+          if(decoded.status === 'approved') {
+            console.log(req.googId);
             req.googId = decoded.googId;
             next();
           }
           else {
-            res.json({success: false, msg: "Do not have access"});
+            if(decoded.status === 'pending') {
+              // This is a special property that lets the client know they have to wait for approval at studentorgconsole
+              res.json({waitForApproval: true});
+            }
+            else { // decoded === 'rejected'
+              res.json({success: false, msg: "Do not have access"});
+            }
+
           }
         }
       }

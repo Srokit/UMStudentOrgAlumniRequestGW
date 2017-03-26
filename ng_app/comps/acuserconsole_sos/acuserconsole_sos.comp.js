@@ -2,7 +2,7 @@ app.component('acuserconsoleSos', {
 
   templateUrl: './comps/acuserconsole_sos/acuserconsole_sos.view.html',
 
-  controller: function ($scope, $http, $location, $window, userService) {
+  controller: function ($scope, $http, $location, $window, userService, navlinksService) {
 
     // These booleans should not be true or false at same time
     // They determine what view will be showing in main part of console
@@ -23,7 +23,7 @@ app.component('acuserconsoleSos', {
         var data = response.data;
         if(data.success) {
           // Reload
-          $scope.start();
+          $scope.reload();
           console.log("Accepted response successfully");
         }
         else {
@@ -43,7 +43,7 @@ app.component('acuserconsoleSos', {
         var data = response.data;
         if(data.success) {
           // Reload
-          $scope.start();
+          $scope.reload();
           console.log("Rejected response successfully");
         }
         else {
@@ -52,7 +52,7 @@ app.component('acuserconsoleSos', {
       });
     };
 
-    $scope.start = function () {
+    $scope.reload = function () {
 
       $http.get('/acuser/studentorgs/all', {
         headers: {
@@ -69,6 +69,13 @@ app.component('acuserconsoleSos', {
           console.error(data.msg);
         }
       });
+    };
+
+    $scope.start = function () {
+
+      navlinksService.setNavlinks(['Manage Alumni Requests'], ['/#/acuserconsole_reqs']);
+
+      $scope.reload();
     };
 
     // Call on component initialized

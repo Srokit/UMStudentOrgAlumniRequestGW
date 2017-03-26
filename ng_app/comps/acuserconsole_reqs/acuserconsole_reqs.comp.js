@@ -2,7 +2,7 @@ app.component('acuserconsoleReqs', {
 
   templateUrl: './comps/acuserconsole_reqs/acuserconsole_reqs.view.html',
 
-  controller: function ($scope, $http, userService) {
+  controller: function ($scope, $http, userService, navlinksService) {
 
     $scope.pendingRequests = [];
     $scope.fulfilledRequests = [];
@@ -18,7 +18,7 @@ app.component('acuserconsoleReqs', {
         var data = response.data;
         if(data.success) {
           console.log("Successfully handledRequest");
-          $scope.start();
+          $scope.reload();
         }
         else {
           console.error(data.msg);
@@ -35,7 +35,7 @@ app.component('acuserconsoleReqs', {
         var data = response.data;
         if(data.success) {
           console.log("Successfully fulfilled Request");
-          $scope.start();
+          $scope.reload();
         }
         else {
           console.error(data.msg);
@@ -61,7 +61,7 @@ app.component('acuserconsoleReqs', {
     };
 
 
-    $scope.start = function () {
+    $scope.reload = function () {
 
       $http.get('/acuser/alumnirequests/all', {
         headers: {
@@ -79,6 +79,12 @@ app.component('acuserconsoleReqs', {
           console.error(data.msg);
         }
       });
+    };
+
+    $scope.start = function () {
+      navlinksService.setNavlinks(['Manage Student Organizations'], ['/#/acuserconsole_sos']);
+
+      $scope.reload();
     };
 
     // Call on component initialized

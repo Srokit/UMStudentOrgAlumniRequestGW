@@ -3,6 +3,8 @@ var router = require('express').Router();
 
 var StudentOrg = require('../../models/StudentOrg');
 
+var emailer = require('../../email');
+
 router.get('/all', function (req, res) {
 
   var pendingSOs = [];
@@ -27,6 +29,16 @@ router.get('/all', function (req, res) {
   });
 });
 
+router.get('/:studentOrgGoogId', function (req, res) {
+
+  var googId = req.params.studentOrgGoogId;
+
+  StudentOrg.findOne({repGoogId: googId}, function (err, studentOrg) {
+
+    res.json({success: true, studentOrg: studentOrg});
+  });
+});
+
 router.get('/:studentOrgId/approve', function (req, res) {
 
   var _id = req.params.studentOrgId;
@@ -35,6 +47,8 @@ router.get('/:studentOrgId/approve', function (req, res) {
       studentOrg.status = 'approved';
       studentOrg.save(function (err) {
         if(!err) {
+
+          emailer.sendStudentOrgApproved(studentOrg, {name: "Awseom lady"});
           res.json({success: true});
         }
       });
@@ -53,6 +67,8 @@ router.get('/:studentOrgId/reject', function (req, res) {
       studentOrg.status = 'rejected';
       studentOrg.save(function (err) {
         if(!err) {
+
+          emailer.sendStudentOrgRejected(studentOrg, {name: "So and so"}, "You suck again!");
           res.json({success: true});
         }
       });

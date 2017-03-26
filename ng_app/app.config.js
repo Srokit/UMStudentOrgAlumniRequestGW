@@ -41,4 +41,10 @@ app.config(function ($stateProvider) {
     url: '/submitrequest',
     template: '<submitrequest></submitrequest>'
   });
+
+  $stateProvider.state({
+    name: 'rejectrequest',
+    url: '/rejectrequest/:requestId',
+    template: '<rejectrequest></rejectrequest>'
+  });
 });

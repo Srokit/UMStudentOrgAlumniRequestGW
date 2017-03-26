@@ -1,10 +1,14 @@
 app.component('navbar', {
   templateUrl: './comps/navbar/navbar.view.html',
   
-  controller: function ($scope, $http, $location, userService) {
+  controller: function ($scope, $http, $location, userService, navlinksService) {
 
     $scope.signedIn = false;
     $scope.user = {};
+
+    // These will be changed by navlinks service
+    $scope.navlinkNames = [];
+    $scope.navlinkUrls = [];
 
     $scope.processAuthSuccess = function (googleUser) {
 
@@ -98,5 +102,16 @@ app.component('navbar', {
         });
       });
     };
+
+    $scope.start = function () {
+      // Subsrcibe to changing navlinks
+      navlinksService.setNavlinksChangeCB(function (navlinkNames, navlinkUrls) {
+      console.log("In setNavlinksChangeCB");
+        $scope.navlinkNames = navlinkNames;
+        $scope.navlinkUrls = navlinkUrls;
+      });
+    };
+
+    $scope.start();
   }
 })

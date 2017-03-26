@@ -1,71 +1,58 @@
-<div class="mdl-layout__container">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header md-layout--fixed-drawer has-drawer">
-        <div class="mdl-layout__header md-layout__header--waterfall">
-            <navbar></navbar>
-        </div>
-        <div class="mdl-layout__drawer">
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link">Link</a>
-            </nav>
-        </div>
-        <div class="mdl-layout__content">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--6-col">
-                    <h3>Pending Orgs</h3>
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                        <thead>
-                        <tr>
-                            <th class="mdl-data-table__cell--non-numeric">Org Name</th>
-                            <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
-                            <th class="mdl-data-table__cell--non-numeric"></th>
-                            <th class="mdl-data-table__cell--non-numeric"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="so in pendingStudentOrgs">
-                            <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
-                            <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="approveSO(so)">Approve</button></td>
-                            <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="rejectSO(so)">Reject</button></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mdl-cell mdl-cell--3-col">
-                    <h3>Approved Orgs</h3>
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                        <thead>
-                        <tr>
-                            <th class="mdl-data-table__cell--non-numeric">Org Name</th>
-                            <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="so in approvedStudentOrgs">
-                            <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mdl-cell mdl-cell--3-col">
-                    <h3>Rejected Orgs</h3>
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                        <thead>
-                        <tr>
-                            <th class="mdl-data-table__cell--non-numeric">Org Name</th>
-                            <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="so in rejectedStudentOrgs">
-                            <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+        <h3>Pending Orgs</h3>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
+                <th class="mdl-data-table__cell--non-numeric"></th>
+                <th class="mdl-data-table__cell--non-numeric"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="so in pendingStudentOrgs">
+                <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
+                <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="approveSO(so)">Approve</button></td>
+                <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="rejectSO(so)">Reject</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col">
+        <h3>Approved Orgs</h3>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="so in approvedStudentOrgs">
+                <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col">
+        <h3>Rejected Orgs</h3>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Org Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Rep Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="so in rejectedStudentOrgs">
+                <td class="mdl-data-table__cell--non-numeric">{{so.orgName}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{so.repName}}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
