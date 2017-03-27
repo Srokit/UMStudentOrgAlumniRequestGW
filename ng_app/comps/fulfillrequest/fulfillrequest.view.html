@@ -1,0 +1,19 @@
+<div class="mdl-grid">
+    <div class="mdl-layout-spacer">
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <div class="mdl-card mdl-shadow--2dp">
+            <form name="confirmFulfillment" novalidate>
+                <h3>Confirm Alumni Request Fulfillment for {{ orgName }}</h3>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" ng-model="alumniName" placeholder="Name of alumni that you have chosen" />
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" ng-model="alumniEmail" placeholder="Their email" />
+                </div>
+                <button class="mdl-button mdl-shadow--2dp" ng-click="fulfill()">Fulfill!</button>
+            </form>
+        </div>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>

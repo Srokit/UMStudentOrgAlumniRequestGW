@@ -26,6 +26,10 @@
                         <label>Alumni requested:<br>
                         <strong>{{ request.alumniName }}</strong></label>
                     </li>
+                    <li ng-if="request.alumniEmail" class="mdl-list__item">
+                        <label>Their email:<br>
+                            <strong>{{ request.alumniEmail }}</strong></label>
+                    </li>
                     <li class="mdl-list__item">
                         <label>Status:<br>
                         <strong>{{ request.status }}</strong>

@@ -5,6 +5,7 @@ var alumniRequestSchema = new mongo.Schema({
   eventName: String,
   subject: String,
   alumniName: String, // optional
+  alumniEmail: String, // optional
   eventDatetime: Date,
   status: String,
   studentOrgGoogId: String,

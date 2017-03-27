@@ -45,7 +45,7 @@
             <tr ng-repeat="req in pendingRequests">
                 <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{ format(req.eventDatetime) }}</td>
-                <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button" ng-click="fulfillReq(req)">Fulfill</button></td>
+                <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button" ui-sref="fulfillrequest({requestId: req._id})">Fulfill</a></td>
                 <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button mdl-color--white" ui-sref="rejectrequest({requestId: req._id})">Reject</a></td>
                 <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button mdl-color--red" ui-sref="requestdetails({requestId: req._id})">View</a></td>
             </tr>

@@ -31,43 +31,6 @@ app.component('acuserconsoleReqs', {
       });
     };
 
-    $scope.fulfillReq = function (req) {
-      $http.get('/acuser/alumnirequests/'+req._id+'/fulfill', {
-        headers: {
-          'user-token': userService.getToken()
-        }
-      }).then(function (response) {
-        var data = response.data;
-        if(data.success) {
-          console.log("Successfully fulfilled Request");
-          notificationService.setNotif("Fulfilled request successfully");
-          $scope.reload();
-        }
-        else {
-          console.error(data.msg);
-        }
-      });
-    };
-
-    $scope.rejectReq = function (req) {
-      $http.get('/acuser/alumnirequests/'+req._id+'/reject', {
-        headers: {
-          'user-token': userService.getToken()
-        }
-      }).then(function (response) {
-        var data = response.data;
-        if(data.success) {
-          console.log("Successfully rejected Request");
-          notificationService.setNotif("Rejected request successfully");
-          $scope.start();
-        }
-        else {
-          console.error(data.msg);
-        }
-      });
-    };
-
-
     $scope.reload = function () {
 
       $http.get('/acuser/alumnirequests/all', {

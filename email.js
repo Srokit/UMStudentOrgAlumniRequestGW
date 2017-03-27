@@ -65,7 +65,7 @@ module.exports.sendAlumniCenterWelcome = function(toAcUser) {
 module.exports.sendRequestReceived = function (toStudentOrg, request) {
 
   var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/received/alumni_request_action_received.email.html', {});
-  var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/received/alumni_request_action_received.email.txt', {});
+  var bodyText = processEmailTemplates('./email_templates/alumni_request_actions/received/alumni_request_action_received.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,
@@ -157,7 +157,7 @@ module.exports.sendRequestFulfilled = function (toStudentOrg, request, acUser) {
 module.exports.sendStudentOrgApproved = function (toStudentOrg, acUser) {
 
   var bodyHtml = processEmailTemplates('./email_templates/studentorg_request_actions/accept/studentorg_request_action_accept.email.html', {});
-  var bodyHtml = processEmailTemplates('./email_templates/studentorg_request_actions/accept/studentorg_request_action_accept.email.txt', {});
+  var bodyText = processEmailTemplates('./email_templates/studentorg_request_actions/accept/studentorg_request_action_accept.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,

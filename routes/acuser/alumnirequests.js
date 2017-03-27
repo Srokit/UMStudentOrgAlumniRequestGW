@@ -67,11 +67,16 @@ router.get('/:alumniRequestId/handle', function (req, res) {
 router.get('/:alumniRequestId/fulfill', function (req, res) {
 
   var _id = req.params.alumniRequestId;
+  // from url?alumniName=<name>
+  var alumniName = req.query['alumniName'];
+  var alumniEmail = req.query['alumniEmail'];
   var acGoogId = req.googId;
 
   AlumniRequest.findById(_id, function (err, req) {
 
     req.status = 'fulfilled';
+    req.alumniName = alumniName;
+    req.alumniEmail = alumniEmail;
     req.save(function (err) {
       if(!err) {
         StudentOrg.findOne({repGoogId: req.studentOrgGoogId}, function (err, studentOrg) {
@@ -94,7 +99,7 @@ router.get('/:alumniRequestId/reject', function (req, res) {
 
   var _id = req.params.alumniRequestId;
   // Reason passed by url?reason='reason here'
-  var reason = req.query.get('reason');
+  var reason = req.query['reason'];
   AlumniRequest.findById(_id, function (err, req) {
 
     req.status = 'rejected';

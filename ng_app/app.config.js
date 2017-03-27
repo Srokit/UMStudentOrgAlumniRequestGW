@@ -59,4 +59,10 @@ app.config(function ($stateProvider) {
     url: '/requestdetails/:requestId',
     template: '<requestdetails></requestdetails>'
   });
+
+  $stateProvider.state({
+    name: 'fulfillrequest',
+    url: '/fulfillrequest/:requestId',
+    template: '<fulfillrequest></fulfillrequest>'
+  });
 });

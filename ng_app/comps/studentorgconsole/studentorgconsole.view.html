@@ -51,15 +51,21 @@
             <tr>
                 <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Event Name</th>
                 <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Date and Time</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Alumni Name</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Alumni Email</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in fulfilledRequests">
                 <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{req.eventName}}</td>
                 <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{ format( req.eventDatetime )}}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{ req.alumniName }}</td>
+                <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0">{{ req.alumniEmail }}</td>
                 <td class="mdl-data-table__cell--non-numeric" ng-if="$index % 2 == 0"><a class="mdl-button" ui-sref="requestdetails({requestId: req._id})">View</a></td>
                 <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{req.eventName}}</td>
                 <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{ format( req.eventDatetime )}}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{ req.alumniName }}</td>
+                <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1">{{ req.alumniEmail }}</td>
                 <td class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white" ng-if="$index % 2 == 1"><a class="mdl-button" ui-sref="requestdetails({requestId: req._id})">View</a></td>
             </tr>
             </tbody>
