@@ -27,6 +27,7 @@ router.post('/', function (req, res) {
   AcEmail.findOne({email: email}, function (err, acEmail) {
     if(acEmail) {
       AcUser.findOne({googId: googId}, function (err, acUser) {
+          console.log("in findOne");
           if(acUser) {
             var token = jwt.sign({googId: googId, type: 'ac'}, config.jwtSecret);
             res.json({success: true, new: false, type: 'ac', token: token});
