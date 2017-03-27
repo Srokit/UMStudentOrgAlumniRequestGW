@@ -143,10 +143,12 @@ module.exports.sendRequestRejected = function (toStudentOrg, request, reason) {
 module.exports.sendRequestFulfilled = function (toStudentOrg, request, acUser) {
 
   var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/fulfill/alumni_request_action_fulfill.email.html', {
-    repName: toStudentOrg.repName, orgName: toStudentOrg.orgName, acName: acUser.name, alumniEmail: request.alumniEmail, alumniName: request.alumniName
+    repName: toStudentOrg.repName, orgName: toStudentOrg.orgName, acName: acUser.name, alumniEmail: request.alumniEmail, alumniName: request.alumniName,
+    url: url
   });
   var bodyText = processEmailTemplates('./email_templates/alumni_request_actions/fulfill/alumni_request_action_fulfill.email.txt', {
-    repName: toStudentOrg.repName, orgName: toStudentOrg.orgName, acName: acUser.name, alumniEmail: request.alumniEmail, alumniName: request.alumniName
+    repName: toStudentOrg.repName, orgName: toStudentOrg.orgName, acName: acUser.name, alumniEmail: request.alumniEmail, alumniName: request.alumniName,
+    url: url
   });
 
   transport.sendMail({
@@ -172,10 +174,10 @@ module.exports.sendRequestFulfilled = function (toStudentOrg, request, acUser) {
 module.exports.sendStudentOrgApproved = function (toStudentOrg, acUser) {
 
   var bodyHtml = processEmailTemplates('./email_templates/studentorg_request_actions/accept/studentorg_request_action_accept.email.html', {
-    name: toStudentOrg.repName, orgName: toStudentOrg.orgName
+    name: toStudentOrg.repName, orgName: toStudentOrg.orgName, url: url
   });
   var bodyText = processEmailTemplates('./email_templates/studentorg_request_actions/accept/studentorg_request_action_accept.email.txt', {
-    name: toStudentOrg.repName, orgName: toStudentOrg.orgName
+    name: toStudentOrg.repName, orgName: toStudentOrg.orgName, url: url
   });
 
   transport.sendMail({
@@ -199,10 +201,10 @@ module.exports.sendStudentOrgApproved = function (toStudentOrg, acUser) {
 module.exports.sendStudentOrgRejected = function (toStudentOrg, reason) {
 
   var bodyHtml = processEmailTemplates('./email_templates/studentorg_request_actions/reject/studentorg_request_action_reject.email.html', {
-    name: toStudentOrg.repName, orgName: toStudentOrg.orgName, reason: reason
+    name: toStudentOrg.repName, orgName: toStudentOrg.orgName, reason: reason, url:url
   });
   var bodyText = processEmailTemplates('./email_templates/studentorg_request_actions/reject/studentorg_request_action_reject.email.txt', {
-    name: toStudentOrg.repName, orgName: toStudentOrg.orgName, reason: reason
+    name: toStudentOrg.repName, orgName: toStudentOrg.orgName, reason: reason, url:url
   });
 
   transport.sendMail({
@@ -219,6 +221,35 @@ module.exports.sendStudentOrgRejected = function (toStudentOrg, reason) {
       console.log("Got mail response:");
       console.log(info);
     }
+  });
+};
+
+module.exports.sendNewRequestToAllAcUsers = function (acUsers, request, studentOrg) {
+
+  acUsers.forEach(function (acUser) {
+
+    var bodyHtml = processEmailTemplates('./email_templates/new_alumni_request_to_acusers/new_alumni_request_to_acusers.email.html', {
+      name: acUser.name, url: url
+    });
+    var bodyText = processEmailTemplates('./email_templates/new_alumni_request_to_acusers/new_alumni_request_to_acusers.email.txt', {
+      name: acUser.name, url: url
+    });
+
+    transport.sendMail({
+      from: emailFrom,
+      to: acUser.email,
+      subject: "A new Alumni Request was just submitted!",
+      text: bodyText,
+      html: bodyHtml
+    }, function (err, info) {
+      if(err) {
+        console.error(err);
+      }
+      else {
+        console.log("Got mail response:");
+        console.log(info);
+      }
+    });
   });
 };
 

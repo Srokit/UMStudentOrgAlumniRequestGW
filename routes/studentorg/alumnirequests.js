@@ -3,6 +3,7 @@ var router = require('express').Router();
 
 var AlumniRequest = require('../../models/AlumniRequest');
 var StudentOrg = require('../../models/StudentOrg');
+var AcUser = require('../../models/AcUser');
 var emailer = require('../../email');
 
 router.get('/all', function (req, res) {
@@ -42,6 +43,10 @@ router.post('/new', function (req, res) {
       StudentOrg.findOne({repGoogId: googId}, function (err, studentOrg) {
 
         emailer.sendRequestReceived(studentOrg, request);
+
+        AcUser.find({}, function (err, acUsers) {
+          emailer.sendNewRequestToAllAcUsers(acUsers, request, studentOrg);
+        });
       });
     }
     else {
