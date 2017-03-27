@@ -1,2 +1,2 @@
 Hello {{name}}
-We have approved your organization for use with the alumni request gateway!
+We have approved your organization {{orgName}} for use with the alumni request gateway!

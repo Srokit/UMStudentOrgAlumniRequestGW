@@ -1,2 +1,5 @@
 Hello {{name}},
-We have noticed this is your first time signing in as an Alumni Center staff member. 
+We have noticed this is your first time signing in as an Alumni Center staff member.
+Stop by often to check on student organization alumni requests for their events and let them know the status of their request.
+You can check out your console at {{url}}.
+- The Alumni Request Gateway Team

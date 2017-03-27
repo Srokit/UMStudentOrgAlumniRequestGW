@@ -1,2 +1,2 @@
 Hello {{name}},
-Your organization has been rejected from using the alumni request gateway because {{reason}}.
+Your organization {{orgName}} has been rejected from using the alumni request gateway because {{reason}}.
