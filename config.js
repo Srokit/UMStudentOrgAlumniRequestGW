@@ -4,7 +4,7 @@ if(process.env.NODE_ENV === 'production') {
 
   config = {
     port: process.env.PORT,
-    dbUri: process.env.DB_URI,
+    dbUri: process.env.MONGODB_URI,
     jwtSecret: process.env.JWT_SECRET,
     mailUsername: process.env.MAIL_USERNAME,
     mailPassword: process.env.MAIL_PASSWORD,
