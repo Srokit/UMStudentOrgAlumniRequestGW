@@ -1,1 +1,2 @@
-<strong>request fullfill</strong>
+Hello {{name}},
+We have fulfilled your organization's request for an alumni!

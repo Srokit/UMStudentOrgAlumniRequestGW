@@ -1,1 +1,2 @@
-<strong>reject handle</strong>
+Hello {{name}}
+We have rejected your organizations request!

@@ -1,1 +1,2 @@
-<strong>received</strong>
+Hello {{name}},
+We have received you request!

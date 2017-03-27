@@ -1,1 +1,2 @@
-<strong>Wecome acuser</strong>
+Hello {{name}},
+We have noticed this is your first time signing in as an Alumni Center staff member. 

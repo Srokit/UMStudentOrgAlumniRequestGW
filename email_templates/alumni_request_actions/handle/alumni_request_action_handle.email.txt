@@ -1,1 +1,2 @@
-<strong>request handle</strong>
+Hello {{name}},
+We have handled your organization's request for an alumni!
