@@ -1,0 +1,4 @@
+Hello {{toName}},
+A fellow Alumni Center Staff member has begun {{fromName}} to handle a request.
+View it now at {{url}}
+- The Alumni Request Gateway Team

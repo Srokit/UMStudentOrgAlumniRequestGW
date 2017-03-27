@@ -52,6 +52,20 @@ router.get('/:alumniRequestId/handle', function (req, res) {
         StudentOrg.findOne({repGoogId: req.studentOrgGoogId}, function (err, studentOrg) {
 
           AcUser.findOne({googId: acGoogId}, function (err, acUser) {
+
+            AcUser.find({}, function (err, allAcUsers) {
+
+              // Remove this ac user from list
+              for(var i = 0; i < allAcUsers.length; ++i) {
+                if(allAcUsers[i]._id === acUser._id) {
+                  allAcUsers.splice(i, 1);
+                  break;
+                }
+              }
+
+              emailer.sendHandleRequestToAllAcUsers(allAcUsers, req, acUser);
+            });
+
             emailer.sendRequestHandled(studentOrg, req, acUser);
             res.json({success: true});
           });

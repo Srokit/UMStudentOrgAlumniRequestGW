@@ -253,6 +253,35 @@ module.exports.sendNewRequestToAllAcUsers = function (acUsers, request, studentO
   });
 };
 
+module.exports.sendHandleRequestToAllAcUsers = function (acUsers, request, fromAcUser) {
+
+  acUsers.forEach(function (acUser) {
+
+    var bodyHtml = processEmailTemplates('./email_templates/acuser_handles_request_to_acusers/acuser_handles_request_to_acusers.email.html', {
+      toName: acUser.name, fromName: fromAcUser.name, url: url,
+    });
+    var bodyText = processEmailTemplates('./email_templates/acuser_handles_request_to_acusers/acuser_handles_request_to_acusers.email.txt', {
+      name: acUser.name, fromName: fromAcUser.name, url: url
+    });
+
+    transport.sendMail({
+      from: emailFrom,
+      to: acUser.email,
+      subject: "A colleague began handling an Alumni Request",
+      text: bodyText,
+      html: bodyHtml
+    }, function (err, info) {
+      if(err) {
+        console.error(err);
+      }
+      else {
+        console.log("Got mail response:");
+        console.log(info);
+      }
+    });
+  });
+};
+
 // Processes email body templates and gives the final raw text to be passed to nodemailer without {{}} markers
 // Arguments: (injectables) = object whose properties are injected into the templates where {{property}} exist
 function processEmailTemplates(filename, injectables) {
