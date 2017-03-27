@@ -1,9 +1,11 @@
 var nodemailer = require('nodemailer');
+var fs = require('fs');
 
 var config = require('./config');
 
 var emailFrom = '"Alumni Request Gateway Team" <team@alumnirequestgw.com>';
 var signOff = "\nBest,\nAlumni Request Gateway Team";
+var url = "http://umargw.herokuapp.com/";
 
 var transport = nodemailer.createTransport({
   service: 'gmail',
@@ -14,16 +16,15 @@ var transport = nodemailer.createTransport({
 });
 
 module.exports.sendStudentOrgWelcome = function(toStudentOrg) {
-  var bodyText = "We welcome "+toStudentOrg.name+" and your student organization "+toStudentOrg.name+
-    " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
-    " approve your organization. Until then you will not be able to make requests."+signOff;
-  var bodyHtml = "We welcome "+toStudentOrg.name+" and your student organization "+toStudentOrg.name+
-    " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
-    " approve your organization. Until then you will not be able to make requests."+signOff;
+
+  var bodyHtml = processEmailTemplates('./email_templates/welcome_studentorg/welcome_studentorg.email.html', {
+    name: toStudentOrg.repName, url: url});
+  var bodyText = processEmailTemplates('./email_templates/welcome_studentorg/welcome_studentorg.email.txt', {
+    name: toStudentOrg.repName, url: url});
 
   transport.sendMail({
     from: emailFrom,
-    to: toStudentOrg.email,
+    to: toStudentOrg.repEmail,
     subject: "Welcome to the Alumni Request Gateway",
     text: bodyText,
     html: bodyHtml
@@ -39,12 +40,8 @@ module.exports.sendStudentOrgWelcome = function(toStudentOrg) {
 };
 
 module.exports.sendAlumniCenterWelcome = function(toAcUser) {
-  var bodyText = "We welcome "+toAcUser.name+" and your student organization "+toAcUser.name+
-    " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
-    " approve your organization. Until then you will not be able to make requests."+signOff;
-  var bodyHtml = "We welcome "+toAcUser.name+" and your student organization "+toAcUser.name+
-    " to the Alumni Request Gateway. Alumni Center Employees will review your organization as soon as possible and" +
-    " approve your organization. Until then you will not be able to make requests."+signOff;
+  var bodyHtml = processEmailTemplates('./email_templates/welcome_acuser/welcome_acuser.email.html', {});
+  var bodyText = processEmailTemplates('./email_templates/welcome_acuser/welcome_acuser.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,
@@ -67,10 +64,8 @@ module.exports.sendAlumniCenterWelcome = function(toAcUser) {
 
 module.exports.sendRequestReceived = function (toStudentOrg, request) {
 
-  var bodyText = "Hello"+toStudentOrg.repName+",\nWe have received your request for your student org "+toStudentOrg.orgName+
-    ". We will contact you as soon as possible with updates!"+signOff;
-  var bodyHtml = "Hello<b>"+toStudentOrg.repName+"</b>,\nWe have received your request for your student org <i>"+toStudentOrg.orgName+
-  "</i>. We will contact you as soon as possible with updates!"+signOff;
+  var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/received/alumni_request_action_received.email.html', {});
+  var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/received/alumni_request_action_received.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,
@@ -91,10 +86,8 @@ module.exports.sendRequestReceived = function (toStudentOrg, request) {
 
 module.exports.sendRequestHandled = function (toStudentOrg, request, acUser) {
 
-  var bodyText = "Hello"+toStudentOrg.repName+",\nAn Alumni Center employee "+acUser.name+" has begun processing your request!\n"+
-    "We should have an answer for you request shortly! In the meantime you can reach out to "+acUser.name+" at "+acUser.email+signOff;
-  var bodyHtml = "Hello"+toStudentOrg.repName+",\nAn Alumni Center employee "+acUser.name+" has begun processing your request!\n"+
-    "We should have an answer for you request shortly! In the meantime you can reach out to "+acUser.name+" at "+acUser.email+signOff;
+  var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/handle/alumni_request_action_handle.email.html', {});
+  var bodyText = processEmailTemplates('./email_templates/alumni_request_actions/handle/alumni_request_action_handle.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,
@@ -115,10 +108,8 @@ module.exports.sendRequestHandled = function (toStudentOrg, request, acUser) {
 
 module.exports.sendRequestRejected = function (toStudentOrg, request, reason) {
 
-  var bodyText = "Hello"+toStudentOrg.repName+",\nUnfortunately, the Alumni Center has decided to deny your Alumni Request because"+
-    reason+". Our apologies plase feel free to submit requests again in the future."+signOff;
-  var bodyHtml = "Hello"+toStudentOrg.repName+",\nUnfortunately, the Alumni Center has decided to deny your Alumni Request because"+
-    reason+". Our apologies plase feel free to submit requests again in the future."+signOff;
+  var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/reject/alumni_request_action_reject.email.html', {});
+  var bodyText = processEmailTemplates('./email_templates/alumni_request_actions/reject/alumni_request_action_reject.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,
@@ -140,10 +131,8 @@ module.exports.sendRequestRejected = function (toStudentOrg, request, reason) {
 
 module.exports.sendRequestFulfilled = function (toStudentOrg, request, acUser) {
 
-  var bodyText = "Hello"+toStudentOrg.repName+",\nYou're in luck! An Alumni Center employee, "+acUser.name+" has fulfilled your request.\n"+
-    "The alumnus, "+request.alumniName+" has agreed to attend your event."+signOff;
-  var bodyHtml = "Hello"+toStudentOrg.repName+",\nYou're in luck! An Alumni Center employee, "+acUser.name+" has fulfilled your request.\n"+
-    "The alumnus, "+request.alumniName+" has agreed to attend your event."+signOff;
+  var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/fulfill/alumni_request_action_fulfill.email.html', {});
+  var bodyText = processEmailTemplates('./email_templates/alumni_request_actions/fulfill/alumni_request_action_fulfill.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,
@@ -167,10 +156,8 @@ module.exports.sendRequestFulfilled = function (toStudentOrg, request, acUser) {
 
 module.exports.sendStudentOrgApproved = function (toStudentOrg, acUser) {
 
-  var bodyText = "Hello"+toStudentOrg.repName+",\nYou're in luck! An Alumni Center employee, "+acUser.name+
-    " has approved your student organization"+toStudentOrg.orgName+" for user on the Alumni Request Gateway.\n"+signOff;
-  var bodyHtml = "Hello"+toStudentOrg.repName+",\nYou're in luck! An Alumni Center employee, "+acUser.name+
-    " has approved your student organization"+toStudentOrg.orgName+" for user on the Alumni Request Gateway.\n"+signOff;
+  var bodyHtml = processEmailTemplates('./email_templates/studentorg_request_actions/accept/studentorg_request_action_accept.email.html', {});
+  var bodyHtml = processEmailTemplates('./email_templates/studentorg_request_actions/accept/studentorg_request_action_accept.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,
@@ -192,10 +179,8 @@ module.exports.sendStudentOrgApproved = function (toStudentOrg, acUser) {
 
 module.exports.sendStudentOrgRejected = function (toStudentOrg, reason) {
 
-  var bodyText = "Hello"+toStudentOrg.repName+",\nUnfortunately, your organization "+toStudentOrg.orgName+
-    " has been denied access to the Alumni Request Gateway because "+reason+"."+signOff;
-  var bodyHtml = "Hello"+toStudentOrg.repName+",\nUnfortunately, your organization "+toStudentOrg.orgName+
-    " has been denied access to the Alumni Request Gateway because "+reason+"."+signOff;
+  var bodyHtml = processEmailTemplates('./email_templates/studentorg_request_actions/reject/studentorg_request_action_reject.email.html', {});
+  var bodyText = processEmailTemplates('./email_templates/studentorg_request_actions/reject/studentorg_request_action_reject.email.txt', {});
 
   transport.sendMail({
     from: emailFrom,
@@ -214,3 +199,18 @@ module.exports.sendStudentOrgRejected = function (toStudentOrg, reason) {
   });
 };
 
+// Processes email body templates and gives the final raw text to be passed to nodemailer without {{}} markers
+// Arguments: (injectables) = object whose properties are injected into the templates where {{property}} exist
+function processEmailTemplates(filename, injectables) {
+
+  var text = fs.readFileSync(filename).toString();
+
+  for(var prop in injectables) {
+    if(injectables.hasOwnProperty(prop)) {
+      text = text.replace('{{' + prop + '}}', injectables[prop]);
+      console.log("Replacing", prop, "result", text);
+    }
+  }
+
+  return text;
+}

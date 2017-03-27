@@ -61,8 +61,6 @@ router.post('/', function (req, res) {
           // Don't insert studentOrg into DB yet because we must get the org name from them on another request
           var token = jwt.sign({googId: googId, type: 'so', status: 'pending'}, config.jwtSecret);
           res.json({success: true, new: true, type: 'so', token: token});
-
-          emailer.sendStudentOrgWelcome(user);
         }
       });
     }
