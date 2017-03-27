@@ -54,6 +54,7 @@ router.post('/', function (req, res) {
     }
     else {
       StudentOrg.findOne({repGoogId: googId}, function (err, studentOrg) {
+        console.log("In studentorg find one");
         if(studentOrg) {
           var token = jwt.sign({googId: googId, type: 'so', status: studentOrg.status}, config.jwtSecret);
           res.json({success: true, new: false, type: 'so', token: token});
