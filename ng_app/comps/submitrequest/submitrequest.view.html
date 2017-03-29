@@ -16,22 +16,22 @@
                                     <input ng-disabled="!usingAlumniName" class="mdl-textfield__input" type="text" ng-model="request.alumniName" placeholder="Alumni Name"/>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" ng-model="request.eventName" placeholder="Event Name"/>
+                                    <input class="mdl-textfield__input" type="text" ng-model="request.eventName" placeholder="Event Name" required/>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" ng-model="request.subject" placeholder="Subject"/>
+                                    <input class="mdl-textfield__input" type="text" ng-model="request.subject" placeholder="Subject" required/>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" ng-model="request.details" placeholder="Details of Need"/>
+                                    <input class="mdl-textfield__input" type="text" ng-model="request.details" placeholder="Details of Need" required/>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield">
                                     <label>Event date and time</label>
-                                    <input class="mdl-textfield__input" type="datetime-local" ng-model="request.eventDatetime" />
+                                    <input class="mdl-textfield__input" type="datetime-local" ng-model="request.eventDatetime" required/>
                                 </div>
                             </form>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <button ng-click="submitForm()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
+                            <button ng-disabled="OrgInfo.$invalid" ng-click="submitForm()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
                         </div>
                     </div>
                 </div>

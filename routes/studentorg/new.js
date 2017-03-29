@@ -16,8 +16,8 @@ router.post('/', function (req, res) {
     repEmail: repInfo.email,
     repName: repInfo.name,
     orgName: name,
-    planOfUse: planOfUse,
-    status: 'pending'
+    planOfUse: planOfUse
+    // status will be set automatically by mongoose
   };
 
   StudentOrg.create(newStudentOrg, function (err) {

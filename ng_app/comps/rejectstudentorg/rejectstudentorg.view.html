@@ -4,9 +4,9 @@
         <form name="confirmReject" novalidate>
             <h3>Confirm Student Org Rejection for {{ orgName }}</h3>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" ng-model="reason" placeholder="Reason for rejection" />
+                <input class="mdl-textfield__input" type="text" ng-model="reason" placeholder="Reason for rejection" required/>
             </div>
-            <button class="mdl-button mdl-shadow--2dp" ng-click="reject()">Reject!</button>
+            <button ng-disabled="confirmReject.$invalid" class="mdl-button mdl-shadow--2dp" ng-click="reject()">Reject!</button>
         </form>
     </div>
     <div class="mdl-layout-spacer"></div>

@@ -120,7 +120,9 @@ module.exports.sendRequestRejected = function (toStudentOrg, request, reason) {
   var bodyHtml = processEmailTemplates('./email_templates/alumni_request_actions/reject/alumni_request_action_reject.email.html', {
     repName: toStudentOrg.repName, reqEventName: request.eventName, reqReason: reason, url: url
   });
-  var bodyText = processEmailTemplates('./email_templates/alumni_request_actions/reject/alumni_request_action_reject.email.txt', {});
+  var bodyText = processEmailTemplates('./email_templates/alumni_request_actions/reject/alumni_request_action_reject.email.txt', {
+    repName: toStudentOrg.repName, reqEventName: request.eventName, reqReason: reason, url: url
+  });
 
   transport.sendMail({
     from: emailFrom,

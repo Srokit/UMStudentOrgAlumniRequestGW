@@ -9,15 +9,15 @@
             <div class="mdl-card__supporting-text">
                 <form name="OrgInfo" novalidate>
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="name" ng-model="orgName" placeholder="Organization Name"/>
+                        <input class="mdl-textfield__input" type="text" id="name" ng-model="orgName" placeholder="Organization Name" required/>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="planOfUse" ng-model="planOfUse" placeholder="Plan of use"/>
+                        <input class="mdl-textfield__input" type="text" id="planOfUse" ng-model="planOfUse" placeholder="How do you plan to use this app?" required/>
                     </div>
                 </form>
             </div>
             <div class="mdl-card__actions mdl-card--border">
-                <button ng-click="submitForm()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
+                <button ng-disabled="OrgInfo.$invalid" ng-click="submitForm()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
             </div>
         </div>
     </div>

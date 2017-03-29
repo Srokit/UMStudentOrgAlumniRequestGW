@@ -45,19 +45,22 @@ router.get('/:alumniRequestId/handle', function (req, res) {
   var acGoogId = req.googId;
   AlumniRequest.findById(_id, function (err, req) {
 
-    req.status = 'pending';
-    req.save(function (err) {
-      if(!err) {
+    AcUser.findOne({googId: acGoogId}, function (err, acUser) {
 
-        StudentOrg.findOne({repGoogId: req.studentOrgGoogId}, function (err, studentOrg) {
+      req.status = 'pending';
+      req.acUserHandlingName = acUser.name;
 
-          AcUser.findOne({googId: acGoogId}, function (err, acUser) {
+      req.save(function (err) {
+        if (!err) {
+
+          StudentOrg.findOne({repGoogId: req.studentOrgGoogId}, function (err, studentOrg) {
+
 
             AcUser.find({}, function (err, allAcUsers) {
 
               // Remove this ac user from list
-              for(var i = 0; i < allAcUsers.length; ++i) {
-                if(allAcUsers[i]._id === acUser._id) {
+              for (var i = 0; i < allAcUsers.length; ++i) {
+                if (allAcUsers[i]._id === acUser._id) {
                   allAcUsers.splice(i, 1);
                   break;
                 }
@@ -69,11 +72,11 @@ router.get('/:alumniRequestId/handle', function (req, res) {
             emailer.sendRequestHandled(studentOrg, req, acUser);
             res.json({success: true});
           });
-        });
-      }
-      else {
-        res.json({success: false, msg: err.message});
-      }
+        }
+        else {
+          res.json({success: false, msg: err.message});
+        }
+      });
     });
   });
 });

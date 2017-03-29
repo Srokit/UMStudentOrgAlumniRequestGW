@@ -3,7 +3,10 @@ var mongo = require('mongoose');
 
 var acEmailSchema = new mongo.Schema({
 
-  email: String
+  email: {
+    type: String,
+    required: true
+  }
 
 });
 

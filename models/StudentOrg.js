@@ -2,12 +2,30 @@ var mongo = require('mongoose');
 
 var studentOrgSchema = new mongo.Schema({
 
-  repGoogId: String,
-  repName: String,
-  repEmail: String,
-  orgName: String,
-  planOfUse: String,
-  status: String, // approved, rejected, or pending
+  repGoogId: {
+    type: String,
+    required: true
+  },
+  repName: {
+    type: String,
+    required: true
+  },
+  repEmail: {
+    type: String,
+    required: true
+  },
+  orgName: {
+    type: String,
+    required: true
+  },
+  planOfUse: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    default: 'pending'
+  }, // approved, rejected, or pending
   reasonForRejection: String //optional
 });
 

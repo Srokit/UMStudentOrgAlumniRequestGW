@@ -34,7 +34,7 @@ router.post('/new', function (req, res) {
   var googId = req.googId;
 
   request.studentOrgGoogId = googId;
-  request.status = 'new';
+  // request.status will be set by default in mongoose
 
   AlumniRequest.create(request, function (err) {
     if(!err) {
