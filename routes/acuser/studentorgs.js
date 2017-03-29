@@ -67,7 +67,7 @@ router.get('/:studentOrgId/approve', function (req, res) {
 router.get('/:studentOrgId/reject', function (req, res) {
 
   var _id = req.params.studentOrgId;
-  var reason = req.query.get('reason');
+  var reason = req.query['reason'];
   StudentOrg.findById(_id, function (err, studentOrg) {
     if(studentOrg) {
       studentOrg.status = 'rejected';
