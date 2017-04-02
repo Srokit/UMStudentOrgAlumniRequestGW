@@ -1,2 +1,4 @@
-Hello {{name}}
+Hello {{name}}<br>
 We have approved your organization {{orgName}} for use with the alumni request gateway!
+Visit your console at {{url}}.
+- The Alumni Request Portal Team

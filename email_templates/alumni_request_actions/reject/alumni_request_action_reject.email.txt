@@ -1,4 +1,4 @@
 Hello {{repName}},
 Unfortunately, your request for {{reqEventName}} has been rejected because {{reqReason}}.
 Please make more requests however at {{url}}.
-- Alumni Request Gateway Team
+- Alumni Request Portal Team

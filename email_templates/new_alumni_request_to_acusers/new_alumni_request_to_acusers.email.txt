@@ -1,3 +1,3 @@
 Hello {{name}},
 There was a new alumni request at the Alumni Request Gateway. View it now at {{url}}
-- The Alumni Request Gateway Team
+- The Alumni Request Portal Team

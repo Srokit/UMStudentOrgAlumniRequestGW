@@ -1,4 +1,4 @@
 Hello {{repName}},
 {{acName}} at the Alumni Center has begun to process your alumni request. He/she should be in touch with you shortly
 with a response. Until then you can check the status of your request in your console at {{url}}.
-- Alumni Request Gateway Team
+- Alumni Request Portal Team
