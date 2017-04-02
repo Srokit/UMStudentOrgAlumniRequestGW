@@ -18,8 +18,8 @@ else { // process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'developme
     port: 3000,
     dbUri: 'mongodb://localhost:27017/umsoargw',
     jwtSecret: 'thisCantBeGuessed',
-    mailUsername: 'srok35@gmail.com',
-    mailPassword: '42!Hayoob',
+    mailUsername: 'umichargw@gmail.com',
+    mailPassword: 'Booyah!24',
     adminPass: 'adminPass'
   };
 }
