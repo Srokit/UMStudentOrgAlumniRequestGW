@@ -35,7 +35,9 @@ app.component('studentorgconsole', {
         else {
           if(data.waitForApproval) {
 
-              $scope.waitingForApproval = true;
+            $scope.waitingForApproval = true;
+
+            navlinksService.setNavlinks([], []);
 
             console.log("User needs to wait for approval still");
           }

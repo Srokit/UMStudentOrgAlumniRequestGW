@@ -6,12 +6,14 @@
             <form name="confirmFulfillment" novalidate>
                 <h3>Confirm Alumni Request Fulfillment for {{ orgName }}</h3>
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="text" ng-model="alumniName" placeholder="Name of alumni that you have chosen" required/>
+                    <textarea class="mdl-textfield__input" type="text" ng-model="alumniNames" placeholder="Names of alumni that you have chosen (each on a different line)" required>
+                        </textarea>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="text" ng-model="alumniEmail" placeholder="Their email" required/>
+                    <textarea class="mdl-textfield__input" type="text" ng-model="alumniEmails" placeholder="Their emails in same order (each on a different line)" required>
+                        </textarea>
                 </div>
-                <button ng-disabled="confirmFulfillment.$invalid" class="mdl-button mdl-shadow--2dp" ng-click="fulfill()">Fulfill!</button>
+                <button ng-disabled="confirmFulfillment.$invalid || numAlumni == 0" class="mdl-button mdl-shadow--2dp" ng-click="fulfill()">Fulfill!</button>
             </form>
         </div>
     </div>

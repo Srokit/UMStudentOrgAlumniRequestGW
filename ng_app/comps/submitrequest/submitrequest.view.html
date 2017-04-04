@@ -8,26 +8,31 @@
                         </div>
                         <div class="mdl-card__supporting-text">
                             <form name="OrgInfo" novalidate>
-                                <div class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-alumni-name">
-                                    <input type="checkbox" id="switch-alumni-name" class="mdl-switch__input" ng-model="usingAlumniName">
-                                    <span class="mdl-switch__label">Requesting specific alumni?</span>
-                                </div>
-                                <div ng-show="usingAlumniName" class="mdl-textfield mdl-js-textfield">
-                                    <input ng-disabled="!usingAlumniName" class="mdl-textfield__input" type="text" ng-model="request.alumniName" placeholder="Alumni Name"/>
-                                </div>
                                 <div class="mdl-textfield mdl-js-textfield">
                                     <input class="mdl-textfield__input" type="text" ng-model="request.eventName" placeholder="Event Name" required/>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" ng-model="request.subject" placeholder="Subject" required/>
-                                </div>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" ng-model="request.details" placeholder="Details of Need" required/>
+                                    <input class="mdl-textfield__input" type="text" ng-model="request.eventDescription" placeholder="Event Description" required/>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield">
                                     <label>Event date and time</label>
                                     <input class="mdl-textfield__input" type="datetime-local" ng-model="request.eventDatetime" required/>
                                 </div>
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <label>Number of Alumni</label>
+                                    <input class="mdl-textfield mdl-js-textfield" type="number" step="1" ng-model="request.numAlumni" required>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <input class="mdl-textfield__input" type="text" ng-model="request.descriptionOfAlumni" placeholder="Description of Alumni" required/>
+                                </div>
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+                                    <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" ng-model="request.needsToBeAlum">
+                                    <span class="mdl-checkbox__label">Must this be a U-M Alum?</span>
+                                </label>
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
+                                    <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" ng-model="request.doesHaveFunding">
+                                    <span class="mdl-checkbox__label">Do you have funding for this event?</span>
+                                </label>
                             </form>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">

@@ -5,14 +5,14 @@ app.component('submitrequest', {
   controller: function ($scope, $http, $location, userService, navlinksService, notificationService) {
 
     $scope.request = {
-
       eventName: '',
-      details: '',
-      subject: '',
-      eventDatetime: ''
+      eventDescription: '',
+      eventDatetime: '',
+      numAlumni: 0,
+      descriptionOfAlumni: '',
+      needsToBeAlum: false,
+      doesHaveFunding: false
     };
-
-    $scope.usingAlumniName = false;
 
     $scope.submitForm = function () {
 

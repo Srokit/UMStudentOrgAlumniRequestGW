@@ -14,7 +14,12 @@ var studentOrgSchema = new mongo.Schema({
     type: String,
     required: true
   },
+  // START Form fields
   orgName: {
+    type: String,
+    required: true
+  },
+  orgType: {
     type: String,
     required: true
   },
@@ -22,6 +27,11 @@ var studentOrgSchema = new mongo.Schema({
     type: String,
     required: true
   },
+  additionalComments: {
+    type: String,
+    required: true
+  },
+  // END Form fields
   status: {
     type: String,
     default: 'pending'

@@ -11,8 +11,18 @@
                     <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="text" id="name" ng-model="orgName" placeholder="Organization Name" required/>
                     </div>
+                    <div>
+                        <label>Organization type</label>
+                        <select ng-model="orgType" ng-options="orgType for orgType in orgTypesList" required>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Primary plan of use</label>
+                        <select ng-model="planOfUse" ng-options="planOfUse for planOfUse in primaryPlansOfUseList" required>
+                        </select>
+                    </div>
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="planOfUse" ng-model="planOfUse" placeholder="How do you plan to use this app?" required/>
+                        <input class="mdl-textfield__input" type="text" id="additionalComments" ng-model="additionalComments" placeholder="Additional Comments" required/>
                     </div>
                 </form>
             </div>

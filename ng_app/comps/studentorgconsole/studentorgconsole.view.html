@@ -10,17 +10,19 @@
         <h3>New Alumni Requests</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
-            <tr>
+            <tr ng-if="newRequests.length != 0">
                 <th class="mdl-data-table__cell--non-numeric">Event Name</th>
                 <th class="mdl-data-table__cell--non-numeric">Date and Time</th>
+            </tr>
+            <tr ng-if="newRequests.length == 0">
+                <th class="mdl-data-table__cell--non-numeric">No New Requests...</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in newRequests">
                 <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{ format( req.eventDatetime )}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{ format( req.eventDatetime )}}</td>
+                <td><a class="mdl-button" ui-sref="requestdetails({requestId: req._id})">View</a></td>
             </tr>
             </tbody>
         </table>
@@ -29,15 +31,19 @@
         <h3>Pending</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
-            <tr>
+            <tr ng-if="pendingRequests.length != 0">
                 <th class="mdl-data-table__cell--non-numeric">Event Name</th>
                 <th class="mdl-data-table__cell--non-numeric">Date and Time</th>
+            </tr>
+            <tr ng-if="pendingRequests.length == 0">
+                <th class="mdl-data-table__cell--non-numeric">No Pending Requests...</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in pendingRequests">
                 <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{ format( req.eventDatetime )}}</td>
+                <td><a class="mdl-button" ui-sref="requestdetails({requestId: req._id})">View</a></td>
             </tr>
             </tbody>
         </table>
@@ -46,19 +52,18 @@
         <h3>Fulfilled</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
-            <tr>
+            <tr ng-if="fulfilledRequests.length != 0">
                 <th class="mdl-data-table__cell--non-numeric">Event Name</th>
                 <th class="mdl-data-table__cell--non-numeric">Date and Time</th>
-                <th class="mdl-data-table__cell--non-numeric">Alumni Name</th>
-                <th class="mdl-data-table__cell--non-numeric">Alumni Email</th>
+            </tr>
+            <tr ng-if="fulfilledRequests.length == 0">
+                <th class="mdl-data-table__cell--non-numeric">No Fulfilled Requests...</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in fulfilledRequests">
                 <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{ format( req.eventDatetime )}}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{ req.alumniName }}</td>
-                <td class="mdl-data-table__cell--non-numeric">{{ req.alumniEmail }}</td>
                 <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button" ui-sref="requestdetails({requestId: req._id})">View</a></td>
             </tr>
             </tbody>
@@ -68,15 +73,19 @@
         <h3>Rejected</h3>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
-            <tr>
-                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Event Name</th>
-                <th class="mdl-data-table__cell--non-numeric mdl-color--blue mdl-color-text--white">Reason for Rejection</th>
+            <tr ng-if="rejectedRequests.length != 0">
+                <th class="mdl-data-table__cell--non-numeric">Event Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Reason for Rejection</th>
+            </tr>
+            <tr ng-if="rejectedRequests.length == 0">
+                <th class="mdl-data-table__cell--non-numeric">No Rejected Requests...</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="req in rejectedRequests">
                 <td class="mdl-data-table__cell--non-numeric">{{req.eventName}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{ req.reasonForRejection }}</td>
+                <td><a class="mdl-button" ui-sref="requestdetails({requestId: req._id})">View</a></td>
             </tr>
             </tbody>
         </table>

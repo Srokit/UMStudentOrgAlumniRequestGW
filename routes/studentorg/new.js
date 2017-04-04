@@ -10,13 +10,17 @@ router.post('/', function (req, res) {
   var name = req.body.name;
   var planOfUse = req.body.planOfUse;
   var repInfo = req.body.repInfo;
+  var orgType = req.body.orgType;
+  var additionalComments = req.body.additionalComments;
 
   var newStudentOrg = {
     repGoogId: repInfo.googId,
     repEmail: repInfo.email,
     repName: repInfo.name,
     orgName: name,
-    planOfUse: planOfUse
+    planOfUse: planOfUse,
+    orgType: orgType,
+    additionalComments: additionalComments
     // status will be set automatically by mongoose
   };
 

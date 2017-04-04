@@ -81,19 +81,19 @@ router.get('/:alumniRequestId/handle', function (req, res) {
   });
 });
 
-router.get('/:alumniRequestId/fulfill', function (req, res) {
+router.post('/:alumniRequestId/fulfill', function (req, res) {
 
   var _id = req.params.alumniRequestId;
   // from url?alumniName=<name>
-  var alumniName = req.query['alumniName'];
-  var alumniEmail = req.query['alumniEmail'];
+  var alumniNames = req.body.alumniNames;
+  var alumniEmails = req.body.alumniEmails;
   var acGoogId = req.googId;
 
   AlumniRequest.findById(_id, function (err, req) {
 
     req.status = 'fulfilled';
-    req.alumniName = alumniName;
-    req.alumniEmail = alumniEmail;
+    req.alumniNames = alumniNames;
+    req.alumniEmails = alumniEmails;
     req.save(function (err) {
       if(!err) {
         StudentOrg.findOne({repGoogId: req.studentOrgGoogId}, function (err, studentOrg) {

@@ -2,20 +2,41 @@ var mongo = require('mongoose');
 
 var alumniRequestSchema = new mongo.Schema({
 
+  // START Form fields
   eventName: {
     type: String,
     required: true
   },
-  subject: {
+  eventDescription: {
     type: String,
     required: true
   },
-  alumniName: String, // optional, will be set after fulfillment forsure
-  alumniEmail: String, // optional, will be set after fulfillment
   eventDatetime: {
     type: String,
     required: true
   },
+  numAlumni: {
+    type: Number,
+    required: true
+  },
+  descriptionOfAlumni: {
+    type: String,
+    required: true
+  },
+  needsToBeAlum: {
+    type: Boolean,
+    required: true
+  },
+  doesHaveFunding: {
+    type: Boolean,
+    required: true
+  },
+  // END Form fields
+
+  // START fulfill form fields
+  alumniNames: [String],
+  alumniEmails: [String],
+  // END Fulfill form fields
   status: {
     type: String,
     default: 'new'

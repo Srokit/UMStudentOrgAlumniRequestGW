@@ -17,18 +17,13 @@
                         <strong>{{ format( request.eventDatetime ) }}</strong>
                             </label>
                     </li>
-                    <li class="mdl-list__item">
-                        <label>Subject for alumni:<br>
-                        <strong>{{ request.subject }}</strong>
-                            </label>
+                    <label>Chosen alumni:<br>
+                    <li ng-repeat="name in request.alumniNames" class="mdl-list__item">
+                        <strong>{{ name }}</strong></label>
                     </li>
-                    <li ng-if="request.alumniName" class="mdl-list__item">
-                        <label>Alumni requested:<br>
-                        <strong>{{ request.alumniName }}</strong></label>
-                    </li>
-                    <li ng-if="request.alumniEmail" class="mdl-list__item">
-                        <label>Their email:<br>
-                            <strong>{{ request.alumniEmail }}</strong></label>
+                    <label>Their respective emails:<br>
+                    <li ng-repeat="email in request.alumniEmails" class="mdl-list__item">
+                            <strong>{{ email }}</strong></label>
                     </li>
                     <li class="mdl-list__item">
                         <label>Status:<br>

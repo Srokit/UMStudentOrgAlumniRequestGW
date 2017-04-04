@@ -6,13 +6,23 @@ app.component('fulfillrequest', {
 
     $scope.orgName = '';
     $scope.request = null;
-    $scope.alumniName= '';
-    $scope.alumniEmail = '';
+    $scope.alumniNames = "";
+    $scope.alumniEmails = "";
 
     $scope.fulfill = function () {
 
-      $http.get('/acuser/alumnirequests/' + $scope.request._id + '/fulfill?alumniName=' + $scope.alumniName +
-        '&alumniEmail=' + $scope.alumniEmail, {
+      console.log($scope.alumniNames);
+      console.log($scope.alumniEmails);
+
+      var alumniNames = $scope.alumniNames.split('\n');
+      var alumniEmails = $scope.alumniEmails.split('\n');
+
+      $http.post('/acuser/alumnirequests/' + $stateParams.requestId + '/fulfill',
+        {
+          alumniNames: alumniNames,
+          alumniEmails: alumniEmails
+        },
+        {
         headers: {
           'user-token': userService.getToken()
         }
