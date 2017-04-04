@@ -74,3 +74,6 @@ fabric.properties
 ## CUSTOM IGNORES
 .idea/
 npm-debug.log
+
+node_modules/
+ng_app/bower_components/
